@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "556250836242",
+    "firebase_url": "https://animalscheltersapp.firebaseio.com",
+    "project_id": "animalscheltersapp",
+    "storage_bucket": "animalscheltersapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556250836242:android:a7394c275cf5d16d1cd7cb",
+        "android_client_info": {
+          "package_name": "com.example.animalscheltersapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556250836242-kk9e0k6grl9c7mrnur4tq1mathmi3ccc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.animalscheltersapp",
+            "certificate_hash": "d32f10e9d1549142432f87529e91e0d1f72d5e29"
+          }
+        },
+        {
+          "client_id": "556250836242-n0s47pqgp0dv65a3i3vibku1d6sun9ng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5mn31ysNKpEo90VPLdb7tqsXblzUx1jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556250836242-n0s47pqgp0dv65a3i3vibku1d6sun9ng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
