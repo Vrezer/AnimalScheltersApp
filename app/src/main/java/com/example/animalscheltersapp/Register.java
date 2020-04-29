@@ -150,9 +150,9 @@ public class Register extends AppCompatActivity {
         String sex_tmp=CheckSex();
 
 
-        //dziala
+        //work
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid()); //Path: User/UserUID
+        DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid()); //Path: User/UserUID/
         user = new User(email,password,name,surname,age,phone,sex_tmp,admin);
         databaseReference.setValue(user);
 
