@@ -38,7 +38,7 @@ public class AddAnimal extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private Animal animal;
-    private static int PICK_IMAGE = 123;
+    private static int PICK_IMAGE = 500;
     Uri imagePath;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;

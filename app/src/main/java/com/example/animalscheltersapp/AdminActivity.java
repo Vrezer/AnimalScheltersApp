@@ -34,4 +34,8 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(new Intent(this, AddAnimal.class));
     }
 
+    public void DeleteAnimal(View view)
+    {
+        startActivity(new Intent(this, AddAnimal.class));
+    }
 }
