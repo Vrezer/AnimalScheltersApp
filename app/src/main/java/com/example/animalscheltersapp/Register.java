@@ -346,8 +346,8 @@ public class Register extends AppCompatActivity {
 
     private String CheckSex()
     {
+
         RadioButton man=findViewById(R.id.MaleRegisterButton);
-        RadioButton woman=findViewById(R.id.WomanRegisterButton);
 
             if (man.isChecked())
                 return "M";

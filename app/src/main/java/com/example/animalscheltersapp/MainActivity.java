@@ -99,13 +99,19 @@ public class MainActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-              User user = dataSnapshot.getValue(User.class);
-               tmp_admin = user.isAdmin();
-                if(!tmp_admin)
+                User user = dataSnapshot.getValue(User.class);
+                tmp_admin = user.isAdmin();
+                if (!tmp_admin)
+                {
+                    Toast.makeText(MainActivity.this,"Logowanie...",Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, UserActivity.class));
+            }
 
                 else
+                    {
+                    Toast.makeText(MainActivity.this, "Logowanie Admin ...", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, AdminActivity.class));
+                }
 
             }
             @Override

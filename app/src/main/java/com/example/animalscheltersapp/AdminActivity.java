@@ -29,4 +29,9 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    public void CreateAnimal(View view)
+    {
+        startActivity(new Intent(this, AddAnimal.class));
+    }
+
 }
