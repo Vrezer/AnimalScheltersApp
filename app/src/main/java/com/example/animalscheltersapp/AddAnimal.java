@@ -66,7 +66,6 @@ public class AddAnimal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_animal);
         getSupportActionBar().hide();
-
         nameEditText=findViewById(R.id.NameAnimalCreate);
         ageEditText=findViewById(R.id.AgeCreateAnimal);
         breedEditText=findViewById(R.id.BreedCreateAnimal);
