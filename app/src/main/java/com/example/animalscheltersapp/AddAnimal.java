@@ -100,7 +100,7 @@ public class AddAnimal extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setType("image/*");    //application/*  audio/mp3 doc/pdf
+                intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select image"),PICK_IMAGE);
             }

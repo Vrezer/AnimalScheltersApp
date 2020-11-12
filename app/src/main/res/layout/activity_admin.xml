@@ -144,6 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/buttonshape"
+                android:onClick="DisplayAnimal"
                 android:text="Wyświetl Zwierzaka"
                 app:layout_constraintEnd_toStartOf="@+id/textView"
                 app:layout_constraintStart_toStartOf="parent"
