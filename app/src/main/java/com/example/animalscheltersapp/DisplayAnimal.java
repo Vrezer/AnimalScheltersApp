@@ -15,4 +15,11 @@ public class DisplayAnimal extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
     }
+
+
+
+    private void Display()
+    {
+
+    }
 }
