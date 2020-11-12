@@ -38,9 +38,8 @@ public class AddAnimal extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private Animal animal;
-    private static int PICK_IMAGE = 500;
+    private static final int PICK_IMAGE = 500;
     Uri imagePath;
-    private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
     ImageView animalPicture;
     EditText nameEditText,ageEditText,breedEditText,descriptionEditText;
@@ -66,14 +65,13 @@ public class AddAnimal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_animal);
         getSupportActionBar().hide();
-
         nameEditText=findViewById(R.id.NameAnimalCreate);
         ageEditText=findViewById(R.id.AgeCreateAnimal);
         breedEditText=findViewById(R.id.BreedCreateAnimal);
         descriptionEditText=findViewById(R.id.DescriptionCreateAniml);
         firebaseAuth= FirebaseAuth.getInstance();
 
-        firebaseStorage = FirebaseStorage.getInstance();
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
         animalPicture = findViewById(R.id.ImageCreateAnimalFirst);
         final Button registerButton = findViewById(R.id.AddButtonNewAnimal);
@@ -137,7 +135,7 @@ public class AddAnimal extends AppCompatActivity {
 
          AnimalId=newPost.getKey();
 
-        StorageReference imageReference = storageReference.child("Animal").child(AnimalId).child("Profile"); // Path: // Animal/AnimalID/"Profile.jpg
+        StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal/AnimalID
         UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override

@@ -155,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/buttonshape"
+                android:onClick="DeleteAnimal"
                 android:text="Usuń Zwierzaka"
                 app:layout_constraintEnd_toStartOf="@+id/imageView7"
                 app:layout_constraintStart_toStartOf="parent"
