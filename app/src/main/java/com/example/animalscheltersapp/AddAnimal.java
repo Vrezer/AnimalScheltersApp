@@ -135,7 +135,7 @@ public class AddAnimal extends AppCompatActivity {
 
          AnimalId=newPost.getKey();
 
-        StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal/AnimalID
+        StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal
         UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
