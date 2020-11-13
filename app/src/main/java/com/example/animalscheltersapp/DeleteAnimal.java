@@ -39,6 +39,7 @@ public class DeleteAnimal extends AppCompatActivity {
         setContentView(R.layout.activity_delete_animal);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //ANDROID COMPONENT
         button=findViewById(R.id.DeleteAnimalButton);
         id=findViewById(R.id.IdDeleteAnimal);
 
@@ -69,13 +70,13 @@ public class DeleteAnimal extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 DeleteAnimalFun();
-                Toast.makeText(DeleteAnimal.this, "Usunięto Zwierzaka! ", Toast.LENGTH_LONG).show();
+                makeToast("Usunięto Zwierzaka.");
                 startActivity(new Intent(DeleteAnimal.this, AdminActivity.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(DeleteAnimal.this, "Bledne ID ", Toast.LENGTH_LONG).show();
+                makeToast("Sprawdź Id.");
                 startActivity(new Intent(DeleteAnimal.this, DeleteAnimal.class));
             }
         });
@@ -89,5 +90,8 @@ public class DeleteAnimal extends AppCompatActivity {
                         ref.removeValue();
     }
 
-
+    private void makeToast(String message)
+    {
+        Toast.makeText(DeleteAnimal.this, message, Toast.LENGTH_SHORT).show();
+    }
 }

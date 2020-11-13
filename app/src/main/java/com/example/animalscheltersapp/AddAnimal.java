@@ -43,6 +43,8 @@ public class AddAnimal extends AppCompatActivity {
     ImageView animalPicture;
     EditText nameEditText,ageEditText,breedEditText,descriptionEditText;
     String name,breed,description,age,sex_tmp,AnimalId;
+    Button registerButton;
+    RadioButton man;
 
 //set image fun
     @Override
@@ -66,28 +68,33 @@ public class AddAnimal extends AppCompatActivity {
         setContentView(R.layout.activity_add_animal);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //ANDROID COMPONENT
         nameEditText=findViewById(R.id.NameAnimalCreate);
         ageEditText=findViewById(R.id.AgeCreateAnimal);
         breedEditText=findViewById(R.id.BreedCreateAnimal);
         descriptionEditText=findViewById(R.id.DescriptionCreateAniml);
+        animalPicture = findViewById(R.id.ImageCreateAnimalFirst);
+        registerButton = findViewById(R.id.AddButtonNewAnimal);
+        man = findViewById(R.id.RadioMaleCreate);
+
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
-        animalPicture = findViewById(R.id.ImageCreateAnimalFirst);
-        final Button registerButton = findViewById(R.id.AddButtonNewAnimal);
 
+
+        //Add to database function
         registerButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 if(ValidateFinally()) {
                     AnimalData();
-                    Toast.makeText(AddAnimal.this, "Zwierzak dodany pomyślnie! ", Toast.LENGTH_LONG).show();
+                    makeToast("Zwierzak dodany pomyślnie.");
                     startActivity(new Intent(AddAnimal.this, AdminActivity.class));
                 }
                 else
                 {
-                    ErrorRegister();
+                    makeToast("Sprawdź dane.");
                 }
             }
         });
@@ -107,28 +114,16 @@ public class AddAnimal extends AppCompatActivity {
         });
     }
 
+    //VARIABLE
+    private String Name() {return  name=nameEditText.getText().toString();}
+    private String Breed() {return  breed=breedEditText.getText().toString();}
+    private String Description() {return  description=descriptionEditText.getText().toString();}
+    private String Age() {return  age=ageEditText.getText().toString();}
+    private String Sex() {return  sex_tmp=CheckSex();}
 
-    private String CheckSex() {
-
-        RadioButton man = findViewById(R.id.RadioMaleCreate);
-
-        if (man.isChecked())
-            return "M";
-        else
-            return "K";
-    }
-
+    //FUNCTION
     private void AnimalData()
     {
-
-
-         name=nameEditText.getText().toString();
-         breed=breedEditText.getText().toString();
-         description=descriptionEditText.getText().toString();
-         age=ageEditText.getText().toString();
-         sex_tmp=CheckSex();
-
-
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference ref=firebaseDatabase.getReference("Animal");
         DatabaseReference newPost=ref.push();
@@ -148,19 +143,25 @@ public class AddAnimal extends AppCompatActivity {
         });
         Animal animal = new Animal(name, age, breed, sex_tmp, description);
         newPost.setValue(animal);
+    }
 
+    //VALIDATE
+
+    private String CheckSex() {
+        if (man.isChecked())
+            return "M";
+        else return "K";
     }
 
     private boolean ValidateName()
     {
         nameEditText.setTextColor(Color.BLACK);
 
-        if (!nameEditText.getText().toString().isEmpty())
+        if (!name.isEmpty())
             return true;
         else
         {
-            nameEditText.setTextColor(Color.RED);
-            nameEditText.setHintTextColor(Color.RED);
+            EditTextColor(nameEditText);
             return false;
         }
     }
@@ -169,8 +170,8 @@ public class AddAnimal extends AppCompatActivity {
     {
         int age_tmp;
         ageEditText.setTextColor(Color.BLACK);
-        if(!ageEditText.getText().toString().isEmpty()) {
-            age_tmp=Integer.valueOf(ageEditText.getText().toString().trim());
+        if(!age.isEmpty()) {
+            age_tmp=Integer.parseInt(age);
             if (age_tmp >= 0 && age_tmp < 99)
                 return true;
             else {
@@ -187,36 +188,47 @@ public class AddAnimal extends AppCompatActivity {
     private boolean ValidateBreed()
     {
         breedEditText.setTextColor(Color.BLACK);
-        if (!breedEditText.getText().toString().isEmpty())
+        if (!breed.isEmpty())
 
             return true;
         else
             {
-                breedEditText.setTextColor(Color.RED);
-                breedEditText.setHintTextColor(Color.RED);
+                EditTextColor(breedEditText);
                 return false;
                 }
     }
+
     private boolean ValidateDescription()
     {
         descriptionEditText.setTextColor(Color.BLACK);
-        if (!descriptionEditText.getText().toString().isEmpty())
+        if (!description.isEmpty())
             return true;
         else
         {
-            descriptionEditText.setTextColor(Color.RED);
-            descriptionEditText.setHintTextColor(Color.RED);
+            EditTextColor(descriptionEditText);
             return false;
         }
     }
 
-    private void ErrorRegister()
-    {
-        Toast.makeText(this,"Sprawdz dane! ",Toast.LENGTH_SHORT).show();
-    }
-
     private boolean ValidateFinally()
     {
+        Name();
+        Breed();
+        Description();
+        Sex();
+        Age();
         return ValidateName() && ValidateBreed() && ValidateAge() && ValidateDescription();
+    }
+
+    private void makeToast(String message)
+    {
+        Toast.makeText(AddAnimal.this, message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    private void EditTextColor(EditText e)
+    {
+        e.setTextColor(Color.RED);
+        e.setHintTextColor(Color.RED);
     }
 }

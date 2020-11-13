@@ -1,8 +1,5 @@
 package com.example.animalscheltersapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,20 +11,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.EventListener;
 import java.util.Objects;
 
 public class DisplayAnimal extends AppCompatActivity {
@@ -44,12 +38,12 @@ public class DisplayAnimal extends AppCompatActivity {
         setContentView(R.layout.activity_display_animal);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //ANDROID COMPONENT
         name=findViewById(R.id.textViewDisplayName);
         age=findViewById(R.id.textViewDisplayAge);
         breed=findViewById(R.id.textViewDisplayBreed);
         sex=findViewById(R.id.textViewDisplaySex);
         description=findViewById(R.id.textViewDisplayDescription);
-
         id=findViewById(R.id.idDispalyAnimal);
         button=findViewById(R.id.displayAnimalButton);
         img=findViewById(R.id.imageDisplayAnimal);
@@ -77,6 +71,7 @@ public class DisplayAnimal extends AppCompatActivity {
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 Bitmap bitmap= BitmapFactory.decodeFile(file.getAbsolutePath());
                 img.setImageBitmap(bitmap);
+                // DISPLAY ANIMAL DATA
                 GetDataFirebase tmp=new GetDataFirebase();
                 tmp.DisplayData(id.getText().toString(),age,name,breed,description,sex);
 
@@ -84,10 +79,15 @@ public class DisplayAnimal extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(DisplayAnimal.this, "Bledne ID ", Toast.LENGTH_LONG).show();
+                makeToast("Sprawdź Id.");
                 startActivity(new Intent(DisplayAnimal.this, DisplayAnimal.class));
             }
         });
+    }
+
+    private void makeToast(String message)
+    {
+        Toast.makeText(DisplayAnimal.this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

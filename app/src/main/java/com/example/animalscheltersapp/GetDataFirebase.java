@@ -68,6 +68,10 @@ public class GetDataFirebase {
     {
 
     }
+
+
+    // in future optimize
+
     /*private void DisplayImage(final String id, final TextView age, final TextView name, final TextView breed, final TextView description, final TextView sex) throws IOException {
         storageReference = FirebaseStorage.getInstance().getReference("Animal").child(id);
         final File file =File.createTempFile("image","jpeg");

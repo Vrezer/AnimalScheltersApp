@@ -1,10 +1,6 @@
 package com.example.animalscheltersapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class DisplayUser extends AppCompatActivity {
 
@@ -35,12 +32,12 @@ public class DisplayUser extends AppCompatActivity {
         setContentView(R.layout.activity_display_user);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //ANDROID COMPONENT
         name = findViewById(R.id.textViewDisplayNameUser);
         age = findViewById(R.id.textViewDisplayAgeUser);
         surname =findViewById(R.id.textViewDisplaySurnameUser);
         sex=findViewById(R.id.textViewDisplaySexUser);
         mail=findViewById(R.id.textViewDisplayEmailUser);
-
         id=findViewById(R.id.idDispalyUser);
         button=findViewById(R.id.displayUserButton);
 
@@ -76,7 +73,7 @@ public class DisplayUser extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(DisplayUser.this, "Błędne ID!  ", Toast.LENGTH_LONG).show();
+                        makeToast("Sprawdź Id.");
                         startActivity(new Intent(DisplayUser.this, DisplayUser.class));
                     }
                     }
@@ -86,10 +83,15 @@ public class DisplayUser extends AppCompatActivity {
                     startActivity(new Intent(DisplayUser.this, DisplayUser.class));
                 }
             };
-
                 ref.addValueEventListener(getData);
         }
         else
-            Toast.makeText(DisplayUser.this, "Podaj ID!  ", Toast.LENGTH_LONG).show();
+            makeToast("Wpisz Id.");
+    }
+
+
+    private void makeToast(String message)
+    {
+        Toast.makeText(DisplayUser.this, message, Toast.LENGTH_SHORT).show();
     }
 }

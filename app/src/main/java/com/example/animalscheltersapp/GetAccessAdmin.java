@@ -50,7 +50,6 @@ public class GetAccessAdmin extends AppCompatActivity {
 
     private void accessAdministration(final boolean flag)
     {
-
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("User").child(id.getText().toString());
         if(!id.getText().toString().isEmpty()) {
             ref.addValueEventListener(new ValueEventListener() {
@@ -70,10 +69,8 @@ public class GetAccessAdmin extends AppCompatActivity {
                        makeToast("Błędne ID");
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
                 }
             });
         }
