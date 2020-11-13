@@ -36,8 +36,6 @@ import static java.lang.Integer.parseInt;
 public class AddAnimal extends AppCompatActivity {
 
 
-    private FirebaseAuth firebaseAuth;
-    private Animal animal;
     private static final int PICK_IMAGE = 500;
     Uri imagePath;
     private StorageReference storageReference;
@@ -48,6 +46,7 @@ public class AddAnimal extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+
         if(requestCode == PICK_IMAGE && resultCode == RESULT_OK && data.getData() != null){
             imagePath = data.getData();
             try {
@@ -69,7 +68,6 @@ public class AddAnimal extends AppCompatActivity {
         ageEditText=findViewById(R.id.AgeCreateAnimal);
         breedEditText=findViewById(R.id.BreedCreateAnimal);
         descriptionEditText=findViewById(R.id.DescriptionCreateAniml);
-        firebaseAuth= FirebaseAuth.getInstance();
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
@@ -146,7 +144,7 @@ public class AddAnimal extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
             }
         });
-        animal = new Animal(name,age,breed,sex_tmp,description);
+        Animal animal = new Animal(name, age, breed, sex_tmp, description);
         newPost.setValue(animal);
 
     }
@@ -217,13 +215,6 @@ public class AddAnimal extends AppCompatActivity {
 
     private boolean ValidateFinally()
     {
-        if(ValidateName()&&ValidateBreed()&&ValidateAge() && ValidateDescription())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return ValidateName() && ValidateBreed() && ValidateAge() && ValidateDescription();
     }
 }

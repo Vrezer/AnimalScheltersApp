@@ -69,32 +69,6 @@ public class DisplayAnimal extends AppCompatActivity {
     }
 
 
-
-    private void DisplayData()
-    {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Animal").child(id.getText().toString());
-
-        ValueEventListener getData = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Animal animal= snapshot.getValue(Animal.class);
-                age.setText(animal.getAge());
-                name.setText(animal.getName());
-                breed.setText(animal.getBreed());
-                description.setText(animal.getDescription());
-                if(animal.getSex().equals("M"))
-                    sex.setText("Samiec");
-                else
-                    sex.setText("Samica");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        };
-        ref.addValueEventListener(getData);
-    }
-
     private void DisplayImage() throws IOException {
         storageReference = FirebaseStorage.getInstance().getReference("Animal").child(id.getText().toString());
         final File file =File.createTempFile("image","jpeg");
@@ -103,7 +77,9 @@ public class DisplayAnimal extends AppCompatActivity {
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 Bitmap bitmap= BitmapFactory.decodeFile(file.getAbsolutePath());
                 img.setImageBitmap(bitmap);
-                DisplayData();
+                GetDataFirebase tmp=new GetDataFirebase();
+                tmp.DisplayData(id.getText().toString(),age,name,breed,description,sex);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
