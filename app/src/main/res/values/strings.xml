@@ -92,6 +92,8 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="nadaj">Nadaj</string>
-    <string name="zabierz">Zabierz</string>
+    <string name="Open">Nadaj</string>
+    <string name="Close">Open</string>
+    <string name="zabierz">Close</string>
     <string name="podaj_id_u_ytkownika">Podaj ID Użytkownika</string>
 </resources>

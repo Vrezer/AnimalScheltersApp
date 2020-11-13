@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     Button login;
-    EditText email,password;
+    EditText emailEdit,passwordEdit;
     static boolean tmp_admin;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-
+    String email,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         //ANDROID COMPONENT
         login=findViewById(R.id.LoginButton);
-        email=findViewById(R.id.EmailLoginText);
-        password=findViewById(R.id.PasswordLoginText);
+        emailEdit=findViewById(R.id.EmailLoginText);
+        passwordEdit=findViewById(R.id.PasswordLoginText);
 
         firebaseDatabase=FirebaseDatabase.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -56,10 +56,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (Validate())
                 {
-                    firebaseAuth.signInWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                    firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful())
                             CheckEmailVerification();
+                            else
+                            {
+                                makeToast("Blędny e-mail lub hasło.");
+                            }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -71,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private String Email(){return email=emailEdit.getText().toString();};
+    private String Password(){return password=passwordEdit.getText().toString();};
     //Go to register Form
     public void Register(View view)
     {
@@ -118,12 +128,14 @@ public class MainActivity extends AppCompatActivity {
     //VALIDATE STRING EMPTY
     private boolean Validate()
     {
-        if (!email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
+        Email();
+        Password();
+        if (!email.isEmpty() && !password.isEmpty())
         { return true; }
         else
         {
-            password.setHintTextColor(Color.RED);
-            email.setHintTextColor(Color.RED);
+            passwordEdit.setHintTextColor(Color.RED);
+            emailEdit.setHintTextColor(Color.RED);
             makeToast("Wpisz E-mail lub Hasło! ");
             return false;
         }

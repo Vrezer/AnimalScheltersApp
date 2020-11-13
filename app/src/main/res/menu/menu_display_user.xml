@@ -2,9 +2,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.animalscheltersapp.DisplayUser">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+    <item android:id="@+id/Home" android:title="Home"></item>
+    <item android:id="@+id/AnimalSchelter" android:title="O nas"></item>
+    <item android:id="@+id/Contact" android:title="Kontakt"></item>
+    <item android:id="@+id/Settings" android:title="Ustawienia" android:icon="@drawable/ic_baseline_settings_24"></item>
+    <item android:id="@+id/LogOut" android:title="Wyloguj"></item>
 </menu>
