@@ -35,18 +35,8 @@
             android:text="Aktualizuj"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView12"
             app:layout_constraintStart_toEndOf="@+id/updateAnimalButton"
             app:layout_constraintTop_toBottomOf="@+id/imageUpdateAnimal" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.5"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/dog" />
 
         <Button
             android:id="@+id/updateAnimalButton"
@@ -78,6 +68,7 @@
             android:ems="10"
             android:inputType="textMultiLine"
             android:singleLine="false"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/ageUpdateAnimal" />
@@ -89,6 +80,7 @@
             android:layout_marginStart="15dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/sexUpdateAnimal" />
@@ -100,6 +92,7 @@
             android:layout_marginStart="15dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/breedUpdateAnimal" />
@@ -111,6 +104,7 @@
             android:layout_marginStart="15dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/nameUpdateAnimal" />
@@ -122,6 +116,7 @@
             android:layout_marginStart="15dp"
             android:ems="10"
             android:inputType="textPersonName"
+            android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/idUpdateAnimal" />
@@ -133,6 +128,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:text="Rasa : "
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,6 +141,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:text="Płeć : "
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -157,6 +154,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:text="Opis : "
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -169,6 +167,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
             android:text="Wiek : "
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,6 +181,7 @@
             android:layout_marginTop="20dp"
             android:singleLine="false"
             android:text="Imie : "
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
