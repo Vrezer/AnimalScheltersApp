@@ -1,5 +1,6 @@
 package com.example.animalscheltersapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,6 +28,8 @@ import org.w3c.dom.Text;
 import java.io.File;
 import java.io.IOException;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 public class GetDataFirebase {
 
 
@@ -39,6 +42,7 @@ public class GetDataFirebase {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Animal").child(id);
 
         ValueEventListener getData = new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Animal animal= snapshot.getValue(Animal.class);
@@ -54,6 +58,7 @@ public class GetDataFirebase {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         };
         ref.addValueEventListener(getData);

@@ -29,17 +29,13 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
     }
 
-    public void CreateAnimal(View view)
-    {
-        startActivity(new Intent(this, AddAnimal.class));
-    }
+    public void CreateAnimal(View view) { startActivity(new Intent(this, AddAnimal.class)); }
 
-    public void DeleteAnimal(View view)
-    {
-        startActivity(new Intent(this, DeleteAnimal.class));
-    }
+    public void DeleteAnimal(View view) { startActivity(new Intent(this, DeleteAnimal.class)); }
 
     public void DisplayAnimal(View view) {startActivity(new Intent(this, DisplayAnimal.class));}
 
     public void UpdateAnimal(View view) {startActivity(new Intent(this, UpdateAnimal.class));}
+
+    public void DisplayUser(View view) {startActivity(new Intent(this, DisplayUser.class));}
 }
