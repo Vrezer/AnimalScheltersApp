@@ -3,7 +3,6 @@ package com.example.animalscheltersapp;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,38 +21,56 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
-    private User user;
     final boolean admin = false;
+    Button registerButton,termsButton;
+    public EditText nameEditText,surnameEditText,ageEditText,emailEditText,passwordEditText,phoneEditText;
+    String sex_tmp;
+    FirebaseUser firebaseUser;
+    FirebaseDatabase firebaseDatabase;
+    RadioButton man,woman;
+    public Pattern pattern;
+    public String pattern_string;
+    public Matcher matcher;
+    String email,password,name,surname,age,phone;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_register);
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        firebaseAuth=FirebaseAuth.getInstance();
-
-        final Button registerButton = findViewById(R.id.RegisterButton);
-        registerButton.setEnabled(false);
+        //ANDROID COMPONENT
+        registerButton = findViewById(R.id.RegisterButton);
+        nameEditText=findViewById(R.id.NameRegisterText);
+        surnameEditText=findViewById(R.id.SurnameRegiserText);
+        ageEditText=findViewById(R.id.AgeRegisterText);
+        emailEditText=findViewById(R.id.EmailRegisterText);
+        passwordEditText=findViewById(R.id.PasswordRegisterText);
+        phoneEditText=findViewById(R.id.PhoneRegisterText);
         final Switch tmp=findViewById(R.id.TermsSwitchRgister);
+        man=findViewById(R.id.MaleRegisterButton);
+        woman=findViewById(R.id.WomanRegisterButton);
+        termsButton=findViewById(R.id.AcceptButtonTerms);
+
+        registerButton.setEnabled(false);
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseUser=firebaseAuth.getCurrentUser();
+
 
         //Accept terms
         tmp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tmp.isChecked()) {
-                    registerButton.setEnabled(true);
-                }
-                else {
-                    registerButton.setEnabled(false);
-                    Toast.makeText(Register.this, "Zaakceptuj warunki użytkowania! ", Toast.LENGTH_LONG).show();
-                }
+                registerButton.setEnabled(tmp.isChecked());
             }
         });
 
@@ -61,209 +78,175 @@ public class Register extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText emailEditText=findViewById(R.id.EmailRegisterText);
-                EditText passwordEditText=findViewById(R.id.PasswordRegisterText);
                 if (ValidateFinally())
                 {
-                    String email=emailEditText.getText().toString();
-                    String password=passwordEditText.getText().toString();
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task)
                         {
-
-                            if(task.isSuccessful()) {
+                            if(task.isSuccessful())
+                            {
                                 sendActivateEmail();
                                 userData();
-                                Toast.makeText(Register.this, "Rejestracja przebiegła pomyślnie! ", Toast.LENGTH_LONG).show();
+                                makeToast("Rejestracja przebiegła pomyślnie!");
                                 finish();
                                 startActivity(new Intent(Register.this, MainActivity.class));
                                 firebaseAuth.signOut();
                             }
-                            else
-                            {
-                                Toast.makeText(Register.this, "Rejestracja nie powiodła się! ", Toast.LENGTH_LONG).show();
-                            }
                         }
                     });
-
                 }
+                else
+                    ErrorRegister();
             }
         });
 
     }
 
 
+    private String Email()
+    { return email=emailEditText.getText().toString(); }
+    private String Password()
+    { return password=passwordEditText.getText().toString(); }
+    private String Name()
+    { return name=nameEditText.getText().toString(); }
+    private String Surname()
+    { return surname=surnameEditText.getText().toString(); }
+    private String Age()
+    { return age=ageEditText.getText().toString(); }
+    private String Phone()
+    { return phone=phoneEditText.getText().toString(); }
+    private String Sex()
+    { return sex_tmp=CheckSex(); }
+
+    //function
     private void sendActivateEmail()
     {
-        FirebaseUser firebaseUser=firebaseAuth.getCurrentUser();
         if (firebaseUser!=null)
         {
             firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                {
-                    Log.i("Register","Succesfull");
-
-                }
-                else
-                    Log.i("Register","Error");
-                }
-            });
-
-        }
-        else
-        {
-
+                public void onComplete(@NonNull Task<Void> task) { }});
         }
     }
 
     private void userData()
     {
 
-        EditText nameEditText=findViewById(R.id.NameRegisterText);
-        EditText surnameEditText=findViewById(R.id.SurnameRegiserText);
-        EditText ageEditText=findViewById(R.id.AgeRegisterText);
-        EditText emailEditText=findViewById(R.id.EmailRegisterText);
-        EditText passwordEditText=findViewById(R.id.PasswordRegisterText);
-        EditText phoneEditText=findViewById(R.id.PhoneRegisterText);
-
-        String email=emailEditText.getText().toString();
-        String password=passwordEditText.getText().toString();
-        String name=nameEditText.getText().toString();
-        String surname=surnameEditText.getText().toString();
-        String age=ageEditText.getText().toString();
-        String phone=phoneEditText.getText().toString();
-        String sex_tmp=CheckSex();
-
-
-        //work
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid()); //Path: User/UserUID/
-        user = new User(email,password,name,surname,age,phone,sex_tmp,admin);
+        User user = new User(email, password, name, surname, age, phone, sex_tmp, admin);
         databaseReference.setValue(user);
-
     }
-
 
     public void goTerms(View view)
     {
         startActivity(new Intent(Register.this, Terms.class));
-        Toast.makeText(Register.this, "Warunki korzystania z użytkowania ", Toast.LENGTH_LONG).show();
+        makeToast("Warunki korzystania z użytkowania. ");
     }
- // VALIDATE //
-   private boolean ValidateFinally()
+
+
+    // VALIDATE //
+    private boolean ValidateFinally()
     {
-         if(ValidateEmail()&&ValidatePassword()&&ValidateName()&&ValidateSurname() && ValidateAge()&&ValidateNumber()&&ValidateSex())
-        {
+        Email();
+        Password();
+        Name();
+        Surname();
+        Age();
+        Phone();
+        Sex();
+        if(ValidateEmail()&&ValidatePassword()&&ValidateName()&&ValidateSurname() && ValidateAge()&&ValidateNumber()&&ValidateSex())
             return true;
-        }
         else
-        {
             return false;
-        }
     }
 
     private boolean ValidateEmail()
     {
-        EditText email_tmp=findViewById(R.id.EmailRegisterText);
-        if(!email_tmp.getText().toString().isEmpty()) {
-            String email_pattern = "^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
-            Pattern pattern = Pattern.compile(email_pattern);
-            Matcher matcher;
-            matcher = pattern.matcher(email_tmp.getText().toString());
-            email_tmp.setTextColor(Color.BLACK);
-            if (matcher.matches())
+        if(!email.isEmpty())
+        {
+            pattern_string = "^([\\w-\\.]+){1,64}@([\\w&&[^_]]+){2,255}.[a-z]{2,}$";
+            pattern = Pattern.compile(pattern_string);
+            matcher = pattern.matcher(email);
+            emailEditText.setTextColor(Color.BLACK);
+            if (matcher.matches()) {
                 return true;
-            else {
-                email_tmp.setTextColor(Color.RED);
-                ErrorRegister();
+            }else {
+                emailEditText.setTextColor(Color.RED);
                 return false;
             }
         }
         else
         {
-            email_tmp.setHintTextColor(Color.RED);
-            ErrorRegister();
+            emailEditText.setHintTextColor(Color.RED);
             return false;
         }
+
     }
 
     private boolean ValidatePassword()
     {
-        EditText password_tmp=findViewById(R.id.PasswordRegisterText);
-        if(!password_tmp.getText().toString().isEmpty())
+        if(!password.isEmpty())
         {
-            String password_pattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
-            Pattern pattern = Pattern.compile(password_pattern);
-            Matcher matcher;
-            matcher = pattern.matcher(password_tmp.getText().toString());
-            password_tmp.setTextColor(Color.BLACK);
+            pattern_string = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+            pattern = Pattern.compile(pattern_string);
+            matcher = pattern.matcher(password);
+            passwordEditText.setTextColor(Color.BLACK);
             if (matcher.matches())
                 return true;
             else {
-                password_tmp.setTextColor(Color.RED);
-                ErrorRegister();
+                passwordEditText.setTextColor(Color.RED);
                 return false;
             }
         }
         else
         {
-            password_tmp.setHintTextColor(Color.RED);
-            ErrorRegister();
+            passwordEditText.setHintTextColor(Color.RED);
             return false;
         }
     }
 
     private boolean ValidateName()
     {
-        EditText name_tmp=findViewById(R.id.NameRegisterText);
-        if(!name_tmp.getText().toString().isEmpty()) {
-            String name_pattern = "^(?=.*[a-z])(?=.*[A-Z]).{3,}$";
-            Pattern pattern = Pattern.compile(name_pattern);
-            Matcher matcher;
-            matcher = pattern.matcher(name_tmp.getText().toString());
-            name_tmp.setTextColor(Color.BLACK);
+        if(!name.isEmpty()) {
+            pattern_string = "^(?=.*[a-z])(?=.*[A-Z]).{3,}$";
+            pattern = Pattern.compile(pattern_string);
+            matcher = pattern.matcher(name);
+            nameEditText.setTextColor(Color.BLACK);
             if (matcher.matches())
                 return true;
 
             else {
-                name_tmp.setTextColor(Color.RED);
-                ErrorRegister();
+                nameEditText.setTextColor(Color.RED);
                 return false;
             }
         }
         else
         {
-            name_tmp.setHintTextColor(Color.RED);
-            ErrorRegister();
+            nameEditText.setHintTextColor(Color.RED);
             return false;
         }
     }
 
     private boolean ValidateSurname()
     {
-        EditText surname_tmp=findViewById(R.id.SurnameRegiserText);
-        if(!surname_tmp.getText().toString().isEmpty()) {
-            String name_pattern = "^(?=.*[a-z])(?=.*[A-Z]).{2,}$";
-            Pattern pattern = Pattern.compile(name_pattern);
-            Matcher matcher;
-            matcher = pattern.matcher(surname_tmp.getText().toString());
-            surname_tmp.setTextColor(Color.BLACK);
+        if(!surname.isEmpty()) {
+            pattern_string = "^(?=.*[a-z])(?=.*[A-Z]).{2,}$";
+            pattern = Pattern.compile(pattern_string);
+            matcher = pattern.matcher(surname);
+            surnameEditText.setTextColor(Color.BLACK);
             if (matcher.matches())
                 return true;
 
             else {
-                surname_tmp.setTextColor(Color.RED);
-                ErrorRegister();
+                surnameEditText.setTextColor(Color.RED);
                 return false;
             }
         }
         else
         {
-            surname_tmp.setHintTextColor(Color.RED);
-            ErrorRegister();
+            surnameEditText.setHintTextColor(Color.RED);
             return false;
         }
     }
@@ -271,34 +254,30 @@ public class Register extends AppCompatActivity {
     private boolean ValidateAge()
     {
         int age_tmp;
-        EditText age=findViewById(R.id.AgeRegisterText);
-        age.setTextColor(Color.BLACK);
-        if(!age.getText().toString().isEmpty()) {
-            age_tmp=Integer.valueOf(age.getText().toString().trim());
+        ageEditText.setTextColor(Color.BLACK);
+        if(!age.isEmpty()) {
+            age_tmp=Integer.parseInt(age);
             if (age_tmp >= 18 && age_tmp < 99)
                 return true;
             else {
-                age.setTextColor(Color.RED);
-                Toast.makeText(this,"Jesteś niepełnoletni!",Toast.LENGTH_LONG).show();
+                ageEditText.setTextColor(Color.RED);
+                makeToast("Jesteś niepełnoletni!");
                 return false;
             }
         }
         else {
-            age.setHintTextColor(Color.RED);
-            ErrorRegister();
+            ageEditText.setHintTextColor(Color.RED);
             return false;
         }
     }
 
     private boolean ValidateNumber()
     {
-        EditText number_tmp = findViewById(R.id.PhoneRegisterText);
-        number_tmp.setTextColor(Color.BLACK);
-        if (!number_tmp.getText().toString().isEmpty()) {
-            if(number_tmp.length()!=9)
+        phoneEditText.setTextColor(Color.BLACK);
+        if (!phone.isEmpty()) {
+            if(phone.length()!=9)
             {
-                number_tmp.setTextColor(Color.RED);
-                ErrorRegister();
+                phoneEditText.setTextColor(Color.RED);
                 return false;
             }
             else
@@ -306,22 +285,17 @@ public class Register extends AppCompatActivity {
         }
         else
         {
-            number_tmp.setHintTextColor(Color.RED);
-            ErrorRegister();
+            phoneEditText.setHintTextColor(Color.RED);
             return false;
         }
     }
 
     private boolean ValidateSex()
     {
-        RadioButton man=findViewById(R.id.MaleRegisterButton);
-        RadioButton woman=findViewById(R.id.WomanRegisterButton);
         man.setTextColor(Color.BLACK);
         woman.setTextColor(Color.BLACK);
         if(man.isChecked()||woman.isChecked())
-        {
-            return true;
-        }
+        { return true; }
         else
         {
             man.setTextColor(Color.RED);
@@ -334,24 +308,25 @@ public class Register extends AppCompatActivity {
 
     private String CheckSex()
     {
-
-        RadioButton man=findViewById(R.id.MaleRegisterButton);
-
-            if (man.isChecked())
-                return "M";
-            else
-                return "K";
-
+        if (man.isChecked())
+            return "M";
+        else
+            return "K";
     }
 
     // Error and InfoButton
     public void PasswordInfo(View view)
     {
-        Toast.makeText(this,"Minimum 8 znaków,\nMinimum 1 wielka litera,\nMinimum 1 mała litera,\nMinimum 1 cyfra",Toast.LENGTH_LONG).show();
+        makeToast("Minimum 8 znaków,\nMinimum 1 wielka litera,\nMinimum 1 mała litera,\nMinimum 1 cyfra");
     }
     private void ErrorRegister()
     {
-        Toast.makeText(this,"Błąd w rejestracji! ",Toast.LENGTH_LONG).show();
+        makeToast("Błąd w rejestracji! ");
     }
 
+
+    private void makeToast(String message)
+    {
+        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
+    }
 }

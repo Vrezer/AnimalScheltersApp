@@ -1,14 +1,15 @@
 package com.example.animalscheltersapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -18,13 +19,13 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
         firebaseAuth= FirebaseAuth.getInstance();
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
     }
 
     public void LogOut(View view)
     {
-        Toast.makeText(this,"Wylogowanie",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Wylogowanie...",Toast.LENGTH_SHORT).show();
         firebaseAuth.signOut();
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -38,4 +39,6 @@ public class AdminActivity extends AppCompatActivity {
     public void UpdateAnimal(View view) {startActivity(new Intent(this, UpdateAnimal.class));}
 
     public void DisplayUser(View view) {startActivity(new Intent(this, DisplayUser.class));}
+
+    public void AccessAdmin(View view) {startActivity(new Intent(this, GetAccessAdmin.class));}
 }

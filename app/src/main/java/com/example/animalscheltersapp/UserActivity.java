@@ -24,7 +24,7 @@ public class UserActivity extends AppCompatActivity {
     public void LogOut(View view)
     {
         firebaseAuth.signOut();
-        Toast.makeText(this,"Wylogowanie",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Wylogowanie...",Toast.LENGTH_LONG).show();
         startActivity(new Intent(this, MainActivity.class));
     }
 }

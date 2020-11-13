@@ -30,12 +30,13 @@ import com.google.firebase.storage.UploadTask;
 import org.w3c.dom.Document;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 
 public class AddAnimal extends AppCompatActivity {
 
-
+//VARIABLES
     private static final int PICK_IMAGE = 500;
     Uri imagePath;
     private StorageReference storageReference;
@@ -43,7 +44,7 @@ public class AddAnimal extends AppCompatActivity {
     EditText nameEditText,ageEditText,breedEditText,descriptionEditText;
     String name,breed,description,age,sex_tmp,AnimalId;
 
-
+//set image fun
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 
@@ -63,7 +64,8 @@ public class AddAnimal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_animal);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         nameEditText=findViewById(R.id.NameAnimalCreate);
         ageEditText=findViewById(R.id.AgeCreateAnimal);
         breedEditText=findViewById(R.id.BreedCreateAnimal);
@@ -131,7 +133,7 @@ public class AddAnimal extends AppCompatActivity {
         DatabaseReference ref=firebaseDatabase.getReference("Animal");
         DatabaseReference newPost=ref.push();
 
-         AnimalId=newPost.getKey();
+        AnimalId=newPost.getKey();
 
         StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal
         UploadTask uploadTask = imageReference.putFile(imagePath);
@@ -210,7 +212,7 @@ public class AddAnimal extends AppCompatActivity {
 
     private void ErrorRegister()
     {
-        Toast.makeText(this,"Sprawdz dane! ",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Sprawdz dane! ",Toast.LENGTH_SHORT).show();
     }
 
     private boolean ValidateFinally()
