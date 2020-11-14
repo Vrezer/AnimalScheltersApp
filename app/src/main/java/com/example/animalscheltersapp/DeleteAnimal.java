@@ -57,7 +57,7 @@ public class DeleteAnimal extends AppCompatActivity {
     private void DeleteAnimalProfile()
     {
         new AlertDialog.Builder(this)
-                .setTitle("Warning")
+                .setTitle("Uwaga! ")
                 .setMessage("Czy na pewno chcesz usunąć tego zwierzaka?")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {

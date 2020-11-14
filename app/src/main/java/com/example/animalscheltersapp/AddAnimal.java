@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +19,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +47,7 @@ public class AddAnimal extends AppCompatActivity {
     EditText nameEditText,ageEditText,breedEditText,descriptionEditText;
     String name,breed,description,age,sex_tmp,AnimalId;
     Button registerButton;
+    String profileImageUrl;
     RadioButton man;
 
 //set image fun
@@ -126,23 +130,29 @@ public class AddAnimal extends AppCompatActivity {
     {
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference ref=firebaseDatabase.getReference("Animal");
-        DatabaseReference newPost=ref.push();
+        final DatabaseReference newPost=ref.push();
 
         AnimalId=newPost.getKey();
-
-        StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal
-        UploadTask uploadTask = imageReference.putFile(imagePath);
+        final StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal
+        final UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
             }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                imageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        profileImageUrl=task.getResult().toString();
+                        Animal animal = new Animal(name, age, breed, sex_tmp, description,profileImageUrl);
+                        newPost.setValue(animal);
+                    }
+                });
             }
         });
-        Animal animal = new Animal(name, age, breed, sex_tmp, description);
-        newPost.setValue(animal);
+
     }
 
     //VALIDATE

@@ -6,6 +6,24 @@ public class Animal {
     private String Breed;
     private String Sex;
     private String Description;
+    private String UrlPicture;
+
+    public String getUrlPicture() {
+        return UrlPicture;
+    }
+
+    public void setUrlPicture(String urlPicture) {
+        UrlPicture = urlPicture;
+    }
+
+    public Animal(String name, String age, String breed, String sex, String description, String urlPicture) {
+        Name = name;
+        Age = age;
+        Breed = breed;
+        Sex = sex;
+        Description = description;
+        UrlPicture = urlPicture;
+    }
 
     public String getName() {
         return Name;
@@ -50,11 +68,4 @@ public class Animal {
     public Animal()
     {}
 
-    public Animal(String name, String age, String breed, String sex, String description) {
-        Name = name;
-        Age = age;
-        Breed = breed;
-        Sex = sex;
-        Description = description;
-    }
 }

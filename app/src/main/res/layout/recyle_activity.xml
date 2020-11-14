@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/imageRecyle"
+            android:layout_width="175dp"
+            android:layout_height="125dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/nameRecyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageRecyle"
+            android:text="DEMO NAME"
+            android:textColor="#000"
+            android:textSize="20dp"
+ />
+
+        <TextView
+            android:id="@+id/breedRecyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameRecyle"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageRecyle"
+            android:text="DEMO BREED"
+            android:textColor="#000"
+            android:textSize="20dp"
+ />
+
+        <TextView
+            android:id="@+id/ageRecyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/breedRecyle"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageRecyle"
+            android:text="15"
+            android:textColor="#000"
+            android:textSize="20dp"
+  />
+
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
