@@ -76,6 +76,7 @@ public class UpdateAnimal extends AppCompatActivity {
             public void onClick(View v) {
                 UpdateData();
                 makeToast("Dane zaktualizowano!");
+
             }
         });
 
