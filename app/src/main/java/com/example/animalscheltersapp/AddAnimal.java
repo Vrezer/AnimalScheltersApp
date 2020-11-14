@@ -45,7 +45,7 @@ public class AddAnimal extends AppCompatActivity {
     private StorageReference storageReference;
     ImageView animalPicture;
     EditText nameEditText,ageEditText,breedEditText,descriptionEditText;
-    String name,breed,description,age,sex_tmp,AnimalId;
+    String name,breed,description,age,sex_tmp,AnimalId,id;
     Button registerButton;
     String profileImageUrl;
     RadioButton man;
@@ -146,7 +146,8 @@ public class AddAnimal extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         profileImageUrl=task.getResult().toString();
-                        Animal animal = new Animal(name, age, breed, sex_tmp, description,profileImageUrl);
+                        id=AnimalId;
+                        Animal animal = new Animal(name, age, breed, sex_tmp, description,profileImageUrl,id);
                         newPost.setValue(animal);
                     }
                 });

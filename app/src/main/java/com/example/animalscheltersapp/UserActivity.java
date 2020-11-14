@@ -27,20 +27,37 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //ANDROID COMPONENTS
         recyclerView=findViewById(R.id.recylewView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
+        // RecyleView
         FirebaseRecyclerOptions<Animal> options = new FirebaseRecyclerOptions.Builder<Animal>()
                         .setQuery(FirebaseDatabase.getInstance().getReference("Animal"), Animal.class)
                         .build();
 
-        myAdapter=new AdapterToRecyleView(options);
+        myAdapter=new AdapterToRecyleView(options,getApplicationContext());
         recyclerView.setAdapter(myAdapter);
 
 
         firebaseAuth= FirebaseAuth.getInstance();
     }
 
+    //BUTTON OPTIONS
+    public void HomePage(){}
+    public void InfoPage(){}
+    public void ContactPage(){}
+    public void SettingsPage(){}
+    public void LogOut(View view)
+    {
+        firebaseAuth.signOut();
+        makeToast("Wylogowanie...");
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+
+    //FUNCTION TO RYCLEVIEW
     @Override
     protected void onStart() {
         super.onStart();
@@ -52,10 +69,7 @@ public class UserActivity extends AppCompatActivity {
         myAdapter.stopListening();
     }
 
-    public void LogOut(View view)
-    {
-        firebaseAuth.signOut();
-        Toast.makeText(this,"Wylogowanie...",Toast.LENGTH_LONG).show();
-        startActivity(new Intent(this, MainActivity.class));
-    }
+
+    public void makeToast(String message) {Toast.makeText(this,message,Toast.LENGTH_SHORT).show();}
+
 }

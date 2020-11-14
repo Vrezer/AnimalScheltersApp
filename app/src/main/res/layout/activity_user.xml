@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundcolor"
+    android:background="@drawable/user_backgrounds"
     tools:context=".UserActivity">
 
     <ScrollView
@@ -31,9 +31,12 @@
                 style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
-                android:drawableStart="@drawable/ic_baseline_settings_24"
+                android:layout_marginEnd="5dp"
+                android:drawableStart="@drawable/ic_settings"
                 app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintStart_toEndOf="@+id/button4"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -75,7 +78,7 @@
                 android:layout_width="45dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:drawableStart="@drawable/ic_baseline_login_24"
+                android:drawableStart="@drawable/ic_logout"
                 android:onClick="LogOut"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

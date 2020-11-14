@@ -122,9 +122,10 @@ public class Register extends AppCompatActivity {
     //function
     private void sendActivateEmail()
     {
-        if (firebaseUser!=null)
+        FirebaseUser firebaseUser2=firebaseAuth.getCurrentUser();
+        if (firebaseUser2!=null)
         {
-            firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            firebaseUser2.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) { }});
         }
