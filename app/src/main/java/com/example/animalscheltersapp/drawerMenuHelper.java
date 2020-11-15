@@ -1,6 +1,7 @@
 package com.example.animalscheltersapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
 import android.view.MenuItem;
@@ -49,13 +50,16 @@ public class drawerMenuHelper {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.aboutUs :
-                        makeToast("ABOUT US",activity);
+                        intentActivity(activity,AboutUs.class);
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.contact :
-                        makeToast("contat",activity);
+                        intentActivity(activity, Contact.class);
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.settings :
-                        makeToast("sett",activity);
+                        intentActivity(activity, Settings.class);
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.logOut :
                         firebaseAuth.signOut();
@@ -64,7 +68,7 @@ public class drawerMenuHelper {
 
                         break;
                     case R.id.exit :
-                        makeToast("exit",activity);
+                        System.exit(0);
                         break;
                 }
                 return true;
