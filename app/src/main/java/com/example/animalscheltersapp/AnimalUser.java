@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.protobuf.DescriptorProtos;
 
 import java.util.Objects;
 
@@ -20,6 +21,7 @@ public class AnimalUser extends AppCompatActivity {
     ImageView img;
     Button buttonHome,buttonAdopt;
     TextView name,breed,sex,age,description;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,13 @@ public class AnimalUser extends AppCompatActivity {
         buttonAdopt=findViewById(R.id.adoptButton);
 
         setData();
+        buttonAdopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                putData();
+            }
+        });
+
 
     }
 
@@ -54,7 +63,19 @@ public class AnimalUser extends AppCompatActivity {
         description.setText(getIntent().getStringExtra("description"));
         sex.setText(CheckSex());
 
+
+
     }
+    private String idAnimal(){return id=getIntent().getStringExtra("id");}
+    private void putData()
+    {
+        Intent intentAdopt=new Intent(this,AdoptActivity.class );
+        intentAdopt.putExtra("id",idAnimal());
+        intentAdopt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        this.startActivity(intentAdopt);
+    }
+
+
 
     private String CheckSex()
     {

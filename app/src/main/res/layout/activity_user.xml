@@ -74,7 +74,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:visibility="visible"
-        android:background="@drawable/backgroundcolor"
+        android:background="@drawable/bgnavigation"
         app:headerLayout="@layout/herder_navi"
         app:menu="@menu/menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -29,13 +29,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class UserActivity extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
     RecyclerView recyclerView;
     AdapterToRecyleView myAdapter;
     NavigationView nav;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
+    FirebaseAuth firebaseAuth;
     DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,63 +45,36 @@ public class UserActivity extends AppCompatActivity {
         //ANDROID COMPONENTS
         recyclerView=findViewById(R.id.recylewView);
         toolbar=findViewById(R.id.toolbarUser);
-        setSupportActionBar(toolbar);
         nav=findViewById(R.id.navmenu);
         drawerLayout=findViewById(R.id.UserLayout);
-        actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
-                    case R.id.home :
-                        recreate();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.aboutUs :
-                        makeToast("ABOUT US");
-                        break;
-                }
-                return true;
-            }
-        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        //Display drawer
+        DrawerMenu();
 
         // RecyleView
+        RecyleView();
+
+    }
+
+
+    private void RecyleView()
+    {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         FirebaseRecyclerOptions<Animal> options = new FirebaseRecyclerOptions.Builder<Animal>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference("Animal"), Animal.class)
-                        .build();
+                .setQuery(FirebaseDatabase.getInstance().getReference("Animal"), Animal.class)
+                .build();
 
         myAdapter=new AdapterToRecyleView(options,getApplicationContext());
         recyclerView.setAdapter(myAdapter);
-
-
-
-
-        firebaseAuth= FirebaseAuth.getInstance();
     }
 
 
-
-
-    public void ClickHome(View view) {recreate();}
-    public void ClickContact(View view){}
-    public void ClickSettings(View view){}
-    public void ClickLogOut(View view){
-        //firebaseAuth.signOut();
-        makeToast("Wylogowanie...");
-        intentActivity(this,testowanie_usunac.class);
+    private void DrawerMenu()
+    {
+        drawerMenuHelper drawerMenuHelper=new drawerMenuHelper(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelper.getToolbar());
+        drawerMenuHelper.DrawerMenu(this,firebaseAuth);
     }
-
-
-
-
-
-    //BUTTON OPTIONS
-
 
 
     //FUNCTION TO RYCLEVIEW
@@ -115,14 +89,4 @@ public class UserActivity extends AppCompatActivity {
         myAdapter.stopListening();
     }
 
-
-
-    public void makeToast(String message) {Toast.makeText(this,message,Toast.LENGTH_SHORT).show();}
-
-    private static void intentActivity(Activity activity,Class aclass)
-    {
-        Intent intent = new Intent(activity,aclass);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        activity.startActivity(intent);
-    }
 }
