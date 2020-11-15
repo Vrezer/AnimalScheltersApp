@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AnimalUser"></activity>
+        <activity android:name=".testowanie_usunac"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity android:name=".AnimalUser" />
         <activity android:name=".GetAccessAdmin" />
         <activity android:name=".DisplayUser" />
         <activity android:name=".UpdateAnimal" />
@@ -19,7 +21,9 @@
         <activity android:name=".DeleteAnimal" />
         <activity android:name=".AddAnimal" />
         <activity android:name=".AdminActivity" />
-        <activity android:name=".UserActivity" />
+        <activity
+            android:name=".UserActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Terms" />
         <activity
             android:name=".Register"
