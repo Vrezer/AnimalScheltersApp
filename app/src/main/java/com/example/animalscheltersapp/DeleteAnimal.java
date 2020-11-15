@@ -2,8 +2,11 @@ package com.example.animalscheltersapp;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +22,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,16 +37,26 @@ public class DeleteAnimal extends AppCompatActivity {
     Button button;
     EditText id;
     StorageReference storageReference;
+    NavigationView nav;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_animal);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //ANDROID COMPONENT
         button=findViewById(R.id.DeleteAnimalButton);
         id=findViewById(R.id.IdDeleteAnimal);
+        toolbar=findViewById(R.id.toolbarAdminDeleteAnimal);
+        nav=findViewById(R.id.navmenuAdminDeleteAnimal);
+        drawerLayout=findViewById(R.id.DeleteAnimalLayout);
+        firebaseAuth = FirebaseAuth.getInstance();
+        //Display drawer
+        DrawerMenu();
 
 
         button.setOnClickListener(new View.OnClickListener(){
@@ -54,6 +69,12 @@ public class DeleteAnimal extends AppCompatActivity {
 
     }
 
+    private void DrawerMenu()
+    {
+        drawerMenuHelperAdmin drawerMenuHelperAdmin=new drawerMenuHelperAdmin(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelperAdmin.getToolbar());
+        drawerMenuHelperAdmin.DrawerMenu(this,firebaseAuth);
+    }
     private void DeleteAnimalProfile()
     {
         new AlertDialog.Builder(this)

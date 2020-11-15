@@ -2,7 +2,10 @@ package com.example.animalscheltersapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -49,6 +53,11 @@ public class AddAnimal extends AppCompatActivity {
     Button registerButton;
     String profileImageUrl;
     RadioButton man;
+    NavigationView nav;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
 
 //set image fun
     @Override
@@ -70,7 +79,6 @@ public class AddAnimal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_animal);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //ANDROID COMPONENT
         nameEditText=findViewById(R.id.NameAnimalCreate);
@@ -80,6 +88,12 @@ public class AddAnimal extends AppCompatActivity {
         animalPicture = findViewById(R.id.ImageCreateAnimalFirst);
         registerButton = findViewById(R.id.AddButtonNewAnimal);
         man = findViewById(R.id.RadioMaleCreate);
+        toolbar=findViewById(R.id.toolbarAdminAddAnimal);
+        nav=findViewById(R.id.navmenuAdminAddAnimal);
+        drawerLayout=findViewById(R.id.AddAnimalLayout);
+        firebaseAuth = FirebaseAuth.getInstance();
+        //Display drawer
+        DrawerMenu();
 
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
@@ -156,6 +170,12 @@ public class AddAnimal extends AppCompatActivity {
 
     }
 
+    private void DrawerMenu()
+    {
+        drawerMenuHelperAdmin drawerMenuHelperAdmin=new drawerMenuHelperAdmin(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelperAdmin.getToolbar());
+        drawerMenuHelperAdmin.DrawerMenu(this,firebaseAuth);
+    }
     //VALIDATE
 
     private String CheckSex() {

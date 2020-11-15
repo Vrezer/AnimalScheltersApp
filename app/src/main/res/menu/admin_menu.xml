@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="   ">
+
+        <menu>
+            <item android:id="@+id/mainAdminMenu"
+                android:title="Strona Główna" />
+        </menu>
+    </item>
+
+    <item android:title="Zarządanie Zwierzakiem">
+
+    <menu>
+    <item
+        android:id="@+id/addAnimalMenu"
+        android:title="Dodowanie Zwierzaka"
+        />
+    <item
+        android:id="@+id/deleteAnimalMenu"
+        android:title="Usuwanie Zwierzaka" />
+    <item
+        android:id="@+id/updateAnimalMenu"
+        android:title="Modyfikacja Zwierzaka" />
+    <item
+        android:id="@+id/displayAnimalMenu"
+        android:title="Wyświetlanie Zwierzaka">
+    </item>
+    </menu>
+    </item>
+
+    <item android:title="Zarządanie Użytkownikiem">
+
+        <menu>
+            <item
+                android:id="@+id/displayUserMenu"
+                android:title="Wyświetlanie Użytkownika"
+                />
+            <item
+                android:id="@+id/adminUserMenu"
+                android:title="Nadawanie Administratora" />
+
+        </menu>
+    </item>
+
+    <item android:title="Zarządanie Zgłoszeniami">
+
+        <menu>
+            <item
+                android:id="@+id/adoptFormMenu"
+                android:title="Formularz Adopcyjny"
+                />
+            <item
+                android:id="@+id/answerMenu"
+                android:title="Pytania" />
+        </menu>
+    </item>
+
+    <item android:title=" ">
+
+        <menu>
+            <item
+                android:id="@+id/logOutMenu"
+                android:title="Wyloguj"
+                />
+            <item
+                android:id="@+id/exitMenu"
+                android:title="Zamknij" />
+        </menu>
+    </item>
+
+</menu>

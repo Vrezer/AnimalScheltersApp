@@ -13,10 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -32,12 +37,16 @@ public class DisplayAnimal extends AppCompatActivity {
     Button button;
     StorageReference storageReference;
     ImageView img;
+    NavigationView nav;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_animal);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //ANDROID COMPONENT
         name=findViewById(R.id.textViewDisplayName);
@@ -48,6 +57,13 @@ public class DisplayAnimal extends AppCompatActivity {
         id=findViewById(R.id.idDispalyAnimal);
         button=findViewById(R.id.displayAnimalButton);
         img=findViewById(R.id.imageDisplayAnimal);
+        toolbar=findViewById(R.id.toolbarAdminDisplayAnimal);
+        nav=findViewById(R.id.navmenuAdminDisplayAnimal);
+        drawerLayout=findViewById(R.id.DisplayAnimalLayout);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        //Display drawer
+        DrawerMenu();
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +79,12 @@ public class DisplayAnimal extends AppCompatActivity {
 
     }
 
+    private void DrawerMenu()
+    {
+        drawerMenuHelperAdmin drawerMenuHelperAdmin=new drawerMenuHelperAdmin(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelperAdmin.getToolbar());
+        drawerMenuHelperAdmin.DrawerMenu(this,firebaseAuth);
+    }
 
     private void DisplayImage() throws IOException {
         storageReference = FirebaseStorage.getInstance().getReference("Animal").child(id.getText().toString());

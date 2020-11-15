@@ -24,13 +24,21 @@
             android:name=".AdoptActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AnimalUser" />
-        <activity android:name=".GetAccessAdmin" />
-        <activity android:name=".DisplayUser" />
-        <activity android:name=".UpdateAnimal" />
-        <activity android:name=".DisplayAnimal" />
-        <activity android:name=".DeleteAnimal" />
-        <activity android:name=".AddAnimal" />
-        <activity android:name=".AdminActivity" />
+        <activity android:name=".GetAccessAdmin"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".DisplayUser"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".UpdateAnimal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DisplayAnimal"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".DeleteAnimal"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".AddAnimal"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".AdminActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".UserActivity"
             android:theme="@style/AppTheme.NoActionBar" />

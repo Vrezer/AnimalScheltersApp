@@ -5,40 +5,46 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private FirebaseAuth firebaseAuth;
+    NavigationView nav;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        firebaseAuth= FirebaseAuth.getInstance();
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
+        //ANDROID COMPONENTS
+        toolbar=findViewById(R.id.toolbarAdmin);
+        nav=findViewById(R.id.navmenuAdmin);
+        drawerLayout=findViewById(R.id.AdminLayout);
+        firebaseAuth = FirebaseAuth.getInstance();
+        //Display drawer
+        DrawerMenu();
     }
 
-    public void LogOut(View view)
+
+    private void DrawerMenu()
     {
-        Toast.makeText(this,"Wylogowanie...",Toast.LENGTH_SHORT).show();
-        firebaseAuth.signOut();
-        startActivity(new Intent(this, MainActivity.class));
+        drawerMenuHelperAdmin drawerMenuHelperAdmin=new drawerMenuHelperAdmin(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelperAdmin.getToolbar());
+        drawerMenuHelperAdmin.DrawerMenu(this,firebaseAuth);
     }
 
-    public void CreateAnimal(View view) { startActivity(new Intent(this, AddAnimal.class)); }
 
-    public void DeleteAnimal(View view) { startActivity(new Intent(this, DeleteAnimal.class)); }
-
-    public void DisplayAnimal(View view) {startActivity(new Intent(this, DisplayAnimal.class));}
-
-    public void UpdateAnimal(View view) {startActivity(new Intent(this, UpdateAnimal.class));}
-
-    public void DisplayUser(View view) {startActivity(new Intent(this, DisplayUser.class));}
-
-    public void AccessAdmin(View view) {startActivity(new Intent(this, GetAccessAdmin.class));}
 }

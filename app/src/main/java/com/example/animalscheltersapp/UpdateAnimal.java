@@ -11,10 +11,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
@@ -34,13 +39,17 @@ public class UpdateAnimal extends AppCompatActivity {
     Button button,button2;
     StorageReference storageReference;
     ImageView img;
+    NavigationView nav;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_animal);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //ANDROID COMPONENT
 
@@ -50,13 +59,19 @@ public class UpdateAnimal extends AppCompatActivity {
          sex=findViewById(R.id.sexUpdateAnimal);
          description=findViewById(R.id.descriptionUpdateAnimal);
          id=findViewById(R.id.idUpdateAnimal);
+         toolbar=findViewById(R.id.toolbarAdminUpdateAnimal);
+         nav=findViewById(R.id.navmenuAdminUpdateAnimal);
+         drawerLayout=findViewById(R.id.UpdateAnimalLayout);
+         firebaseAuth = FirebaseAuth.getInstance();
+
+
 
          button=findViewById(R.id.updateAnimalButton);
          button2=findViewById(R.id.updateAnimalButton2);
          img =findViewById(R.id.imageUpdateAnimal);
 
-
-
+         //Display drawer
+         DrawerMenu();
          // Display Animal
          button.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -100,6 +115,13 @@ public class UpdateAnimal extends AppCompatActivity {
 
 
     //Function
+
+    private void DrawerMenu()
+    {
+        drawerMenuHelperAdmin drawerMenuHelperAdmin=new drawerMenuHelperAdmin(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelperAdmin.getToolbar());
+        drawerMenuHelperAdmin.DrawerMenu(this,firebaseAuth);
+    }
 
     private void displayData() throws IOException {
 

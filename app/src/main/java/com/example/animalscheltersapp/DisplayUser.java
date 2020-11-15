@@ -10,8 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,12 +30,16 @@ public class DisplayUser extends AppCompatActivity {
     TextView name,age,surname,sex,mail;
     EditText id;
     Button button;
+    NavigationView nav;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_user);
-        Objects.requireNonNull(getSupportActionBar()).hide();
 
         //ANDROID COMPONENT
         name = findViewById(R.id.textViewDisplayNameUser);
@@ -40,6 +49,12 @@ public class DisplayUser extends AppCompatActivity {
         mail=findViewById(R.id.textViewDisplayEmailUser);
         id=findViewById(R.id.idDispalyUser);
         button=findViewById(R.id.displayUserButton);
+        toolbar=findViewById(R.id.toolbarAdminDisplayUser);
+        nav=findViewById(R.id.navmenuAdminDisplayUser);
+        drawerLayout=findViewById(R.id.DisplayUserLayout);
+        firebaseAuth = FirebaseAuth.getInstance();
+        //Display drawer
+        DrawerMenu();
 
 
 
@@ -52,6 +67,13 @@ public class DisplayUser extends AppCompatActivity {
     }
 
 
+
+    private void DrawerMenu()
+    {
+        drawerMenuHelperAdmin drawerMenuHelperAdmin=new drawerMenuHelperAdmin(nav,actionBarDrawerToggle,toolbar,drawerLayout);
+        setSupportActionBar(drawerMenuHelperAdmin.getToolbar());
+        drawerMenuHelperAdmin.DrawerMenu(this,firebaseAuth);
+    }
     private void DisplayData() {
         if (!id.getText().toString().isEmpty()) {
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("User").child(id.getText().toString());
