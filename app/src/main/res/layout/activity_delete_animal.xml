@@ -97,12 +97,13 @@
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-<com.google.android.material.navigation.NavigationView
-android:id="@+id/navmenuAdminDeleteAnimal"
-android:layout_width="wrap_content"
-android:layout_height="match_parent"
-android:layout_gravity="start"
-android:background="@drawable/bgnavigation"
-app:headerLayout="@layout/herder_navi"
-app:menu="@menu/admin_menu" />
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navmenuAdminDeleteAnimal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/bgnavigation"
+        app:headerLayout="@layout/herder_navi"
+        app:menu="@menu/admin_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>

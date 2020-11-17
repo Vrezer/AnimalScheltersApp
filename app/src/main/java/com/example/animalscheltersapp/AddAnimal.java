@@ -143,7 +143,7 @@ public class AddAnimal extends AppCompatActivity {
     private void AnimalData()
     {
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference ref=firebaseDatabase.getReference("Animal");
+        DatabaseReference ref=firebaseDatabase.getReference("Animal") ;
         final DatabaseReference newPost=ref.push();
 
         AnimalId=newPost.getKey();

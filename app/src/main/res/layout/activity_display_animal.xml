@@ -11,9 +11,7 @@
     tools:openDrawer="start"
     android:id="@+id/DisplayAnimalLayout">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundcolor"
@@ -93,7 +91,7 @@
                 android:layout_marginTop="35dp"
                 android:singleLine="false"
                 android:text="Imie : "
-                android:textColor="#000000"
+                android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +115,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:text="Rasa : "
-                android:textColor="#000000"
+                android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +139,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:text="Płeć : "
-                android:textColor="#000000"
+                android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +163,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:text="Opis : "
-                android:textColor="#000000"
+                android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -192,7 +190,7 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="15dp"
                 android:text="Wiek : "
-                android:textColor="#000000"
+                android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -236,12 +234,12 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-<com.google.android.material.navigation.NavigationView
-android:id="@+id/navmenuAdminDisplayAnimal"
-android:layout_width="wrap_content"
-android:layout_height="match_parent"
-android:layout_gravity="start"
-android:background="@drawable/bgnavigation"
-app:headerLayout="@layout/herder_navi"
-app:menu="@menu/admin_menu" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navmenuAdminDisplayAnimal"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/bgnavigation"
+        app:headerLayout="@layout/herder_navi"
+        app:menu="@menu/admin_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>

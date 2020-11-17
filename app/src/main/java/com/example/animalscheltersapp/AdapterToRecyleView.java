@@ -26,15 +26,13 @@ public class AdapterToRecyleView extends FirebaseRecyclerAdapter<Animal, Adapter
         this.context=context;
 
     }
-
     @Override
     protected void onBindViewHolder(@NonNull myView holder, int position, @NonNull final Animal model) {
-        holder.name.setText("Imię: "+model.getName());
-        holder.breed.setText("Rasa: "+model.getBreed());
-        holder.age.setText("Wiek: "+model.getAge());
+        holder.name.setText(model.getName());
+        holder.breed.setText(model.getBreed());
+        holder.age.setText(model.getAge());
+
         Glide.with(holder.img.getContext()).load(model.getUrlPicture()).into(holder.img);
-
-
         holder.img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)

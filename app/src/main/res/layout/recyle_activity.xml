@@ -14,6 +14,16 @@
         android:layout_height="wrap_content"
         android:padding="15dp">
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageRecyle"
+            android:text="Imię: "
+            android:textColor="#454444"
+            android:textSize="18dp" />
+
         <ImageView
             android:id="@+id/imageRecyle"
             android:layout_width="175dp"
@@ -25,24 +35,45 @@
             android:id="@+id/nameRecyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/imageRecyle"
             android:text="DEMO NAME"
             android:textColor="#000"
-            android:textSize="20dp"
- />
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameRecyle"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageRecyle"
+            android:text="Rasa: "
+            android:textColor="#454444"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/breedRecyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/nameRecyle"
+            android:layout_below="@+id/textView3"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/imageRecyle"
             android:text="DEMO BREED"
             android:textColor="#000"
-            android:textSize="20dp"
- />
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/breedRecyle"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imageRecyle"
+            android:text="Wiek: "
+            android:textColor="#454444"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/ageRecyle"
@@ -50,11 +81,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/breedRecyle"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/imageRecyle"
+            android:layout_toRightOf="@+id/textView4"
             android:text="15"
             android:textColor="#000"
-            android:textSize="20dp"
-  />
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

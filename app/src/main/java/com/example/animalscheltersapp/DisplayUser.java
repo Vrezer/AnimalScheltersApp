@@ -53,6 +53,8 @@ public class DisplayUser extends AppCompatActivity {
         nav=findViewById(R.id.navmenuAdminDisplayUser);
         drawerLayout=findViewById(R.id.DisplayUserLayout);
         firebaseAuth = FirebaseAuth.getInstance();
+
+
         //Display drawer
         DrawerMenu();
 
