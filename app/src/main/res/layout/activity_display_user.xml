@@ -221,7 +221,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="Schronisko Dla Zwierząt" />
+            app:title="Wyświetlanie Użytkownika" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
