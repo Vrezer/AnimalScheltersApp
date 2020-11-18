@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.textclassifier.ConversationActions;
@@ -21,6 +22,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class AdoptActivity extends AppCompatActivity {
 
@@ -114,7 +120,7 @@ public class AdoptActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                    startActivity(new Intent(AdoptActivity.this,UserActivity.class));
                     }
                 }).show();
     }
@@ -124,6 +130,9 @@ public class AdoptActivity extends AppCompatActivity {
 
     private void SendData()
     {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        String tmp=formatter.format(date);
         question1 = getString(q1);  question2 = getString(q2); question3 = getString(q3); question4 = getString(q4);
         question5 = getString(q5);  question6 = getString(q6); question7 = getString(q7); question8 = getString(q8);
         question9 = getString(q9);  question10 = getString(q10); question11 = getString(q11); question12 = getString(q12);
@@ -131,11 +140,12 @@ public class AdoptActivity extends AppCompatActivity {
         question17 = getString(q17);  question18 = getString(q18);
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
         DatabaseReference ref=firebaseDatabase.getReference("AdoptForm");
-        ref.push();
-        AdoptModel model=new AdoptModel(firebaseAuth.getUid(),getIntent().getStringExtra("id")
+        DatabaseReference ref_tmp=ref.push();
+        String key=ref_tmp.getKey();
+        AdoptModel model=new AdoptModel(firebaseAuth.getUid(),getIntent().getStringExtra("id"),key
         ,question1,question2,question3,question4,question5,question6,question7,question8,
-        question9,question10,question11,question12,question13,question14,question15,question16,question17,question18);
-        ref.setValue(model);
+        question9,question10,question11,question12,question13,question14,question15,question16,question17,question18,tmp);
+        ref_tmp.setValue(model);
     }
 
     private boolean geTextEmpty(EditText e)

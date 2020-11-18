@@ -38,6 +38,8 @@ import com.google.firebase.storage.UploadTask;
 import org.w3c.dom.Document;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
@@ -100,7 +102,7 @@ public class AddAnimal extends AppCompatActivity {
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
 
-        registerButton.setEnabled(true);
+        registerButton.setEnabled(false);
 
 
 
@@ -113,6 +115,7 @@ public class AddAnimal extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
+                registerButton.setEnabled(true);
                 startActivityForResult(Intent.createChooser(intent, "Select image"),PICK_IMAGE);
             }
         });
@@ -165,9 +168,12 @@ public class AddAnimal extends AppCompatActivity {
                 imageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        Date date = new Date();
+                        String tmp=formatter.format(date);
                         profileImageUrl=task.getResult().toString();
                         id=AnimalId;
-                        Animal animal = new Animal(name, age, breed, sex_tmp, description,profileImageUrl,id);
+                        Animal animal = new Animal(name, age, breed, CheckSex(), description,profileImageUrl,id,tmp);
                         newPost.setValue(animal);
                     }
                 });
@@ -190,7 +196,25 @@ public class AddAnimal extends AppCompatActivity {
         else return "K";
     }
 
-    private boolean ValidateName()
+
+    private boolean Validate(EditText e,String string)
+    {
+        e.setTextColor(Color.BLACK);
+        if(!string.isEmpty())
+            return true;
+        else
+        {
+            EditTextColor(e);
+            return false;
+        }
+    }
+
+    private boolean ValidateFinally()
+    {
+        return Validate(nameEditText,Name()) && Validate(breedEditText,Breed()) && Validate(ageEditText,Age()) && Validate(descriptionEditText,Description());
+    }
+
+    /*private boolean ValidateName()
     {
         nameEditText.setTextColor(Color.BLACK);
 
@@ -205,21 +229,14 @@ public class AddAnimal extends AppCompatActivity {
 
     private boolean ValidateAge()
     {
-        int age_tmp;
         ageEditText.setTextColor(Color.BLACK);
-        if(!age.isEmpty()) {
-            age_tmp=Integer.parseInt(age);
-            if (age_tmp >= 0 && age_tmp < 99)
+        if(!age.isEmpty())
                 return true;
-            else {
-                ageEditText.setTextColor(Color.RED);
+            else
+            {
+                EditTextColor(ageEditText);
                 return false;
             }
-        }
-        else {
-            ageEditText.setHintTextColor(Color.RED);
-            return false;
-        }
     }
 
     private boolean ValidateBreed()
@@ -256,7 +273,7 @@ public class AddAnimal extends AppCompatActivity {
         Age();
         return ValidateName() && ValidateBreed() && ValidateAge() && ValidateDescription();
     }
-
+*/
     private void makeToast(String message)
     {
         Toast.makeText(AddAnimal.this, message, Toast.LENGTH_SHORT).show();

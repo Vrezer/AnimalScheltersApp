@@ -70,7 +70,6 @@ public class AdapterToRecyleView extends FirebaseRecyclerAdapter<Animal, Adapter
             name= itemView.findViewById(R.id.nameRecyle);
             breed= itemView.findViewById(R.id.breedRecyle);
             age=itemView.findViewById(R.id.ageRecyle);
-
         }
     }
 }

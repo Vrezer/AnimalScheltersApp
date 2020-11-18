@@ -1,16 +1,23 @@
 package com.example.animalscheltersapp;
 
+import java.util.Date;
+
 public class AdoptModel
 {
     String idUser;
     String idAnimal;
+    String idAdoptForm;
     String question1,question2,question3,question4,question5,question6,question7,question8;
     String question9,question10,question11,question12,question13,question14,question15,question16;
     String question17,question18;
+    String date;
 
-    public AdoptModel(String idUser, String idAnimal, String question1, String question2, String question3, String question4, String question5, String question6, String question7, String question8, String question9, String question10, String question11, String question12, String question13, String question14, String question15, String question16, String question17, String question18) {
+    public AdoptModel(){ }
+
+    public AdoptModel(String idUser, String idAnimal, String idAdoptForm, String question1, String question2, String question3, String question4, String question5, String question6, String question7, String question8, String question9, String question10, String question11, String question12, String question13, String question14, String question15, String question16, String question17, String question18, String date) {
         this.idUser = idUser;
         this.idAnimal = idAnimal;
+        this.idAdoptForm = idAdoptForm;
         this.question1 = question1;
         this.question2 = question2;
         this.question3 = question3;
@@ -29,6 +36,15 @@ public class AdoptModel
         this.question16 = question16;
         this.question17 = question17;
         this.question18 = question18;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getIdAdoptForm() {
+        return idAdoptForm;
     }
 
     public String getIdUser() {

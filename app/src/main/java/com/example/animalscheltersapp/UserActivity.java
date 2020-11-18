@@ -59,9 +59,14 @@ public class UserActivity extends AppCompatActivity {
 
     private void RecyleView()
     {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //REVERSE
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         FirebaseRecyclerOptions<Animal> options = new FirebaseRecyclerOptions.Builder<Animal>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Animal"), Animal.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("Animal").orderByChild("date"), Animal.class)
                 .build();
 
         myAdapter=new AdapterToRecyleView(options,getApplicationContext());

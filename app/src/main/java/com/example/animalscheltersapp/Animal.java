@@ -8,6 +8,7 @@ public class Animal {
     private String Description;
     private String UrlPicture;
     private String id;
+    private String date;
 
     public String getUrlPicture() {
         return UrlPicture;
@@ -18,7 +19,7 @@ public class Animal {
     }
 
 
-    public Animal(String name, String age, String breed, String sex, String description, String urlPicture, String id) {
+    public Animal(String name, String age, String breed, String sex, String description, String urlPicture, String id, String date) {
         Name = name;
         Age = age;
         Breed = breed;
@@ -26,6 +27,11 @@ public class Animal {
         Description = description;
         UrlPicture = urlPicture;
         this.id = id;
+        this.date = date;
+    }
+
+    public String getDate() {
+        return date;
     }
 
     public void setId(String id) {
