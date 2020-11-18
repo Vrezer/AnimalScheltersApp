@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -99,23 +100,8 @@ public class AddAnimal extends AppCompatActivity {
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
 
+        registerButton.setEnabled(true);
 
-        //Add to database function
-        registerButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                if(ValidateFinally()) {
-                    AnimalData();
-                    makeToast("Zwierzak dodany pomyślnie.");
-                    startActivity(new Intent(AddAnimal.this, AdminActivity.class));
-                }
-                else
-                {
-                    makeToast("Sprawdź dane.");
-                }
-            }
-        });
 
 
         //setAnimalPicture
@@ -130,6 +116,23 @@ public class AddAnimal extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select image"),PICK_IMAGE);
             }
         });
+        //Add to database function
+        registerButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                if(ValidateFinally()) {
+                        AnimalData();
+                        makeToast("Zwierzak dodany pomyślnie.");
+                        startActivity(new Intent(AddAnimal.this, AdminActivity.class));
+                }
+                else
+                {
+                    makeToast("Sprawdź dane.");
+                }
+            }
+        });
+
     }
 
     //VARIABLE
@@ -140,6 +143,9 @@ public class AddAnimal extends AppCompatActivity {
     private String Sex() {return  sex_tmp=CheckSex();}
 
     //FUNCTION
+
+
+
     private void AnimalData()
     {
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();

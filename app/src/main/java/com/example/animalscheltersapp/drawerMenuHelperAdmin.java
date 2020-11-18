@@ -72,7 +72,7 @@ public class drawerMenuHelperAdmin {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.adoptFormMenu :
-                        //intentActivity(activity, DisplayUser.class);
+                        intentActivity(activity, AdoptAdmin.class);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.answerMenu :
@@ -83,10 +83,6 @@ public class drawerMenuHelperAdmin {
                         firebaseAuth.signOut();
                         makeToast("Wylogowanie...",activity);
                         intentActivity(activity,MainActivity.class);
-
-                        break;
-                    case R.id.exitMenu :
-                        System.exit(0);
                         break;
                 }
                 return true;

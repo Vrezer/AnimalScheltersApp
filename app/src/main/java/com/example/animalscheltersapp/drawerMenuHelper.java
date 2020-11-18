@@ -65,10 +65,6 @@ public class drawerMenuHelper {
                         firebaseAuth.signOut();
                         makeToast("Wylogowanie...",activity);
                         intentActivity(activity,MainActivity.class);
-
-                        break;
-                    case R.id.exit :
-                        System.exit(0);
                         break;
                 }
                 return true;

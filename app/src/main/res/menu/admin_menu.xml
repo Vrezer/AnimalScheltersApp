@@ -64,9 +64,6 @@
                 android:id="@+id/logOutMenu"
                 android:title="Wyloguj"
                 />
-            <item
-                android:id="@+id/exitMenu"
-                android:title="Zamknij" />
         </menu>
     </item>
 
