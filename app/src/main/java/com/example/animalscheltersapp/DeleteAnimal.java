@@ -147,7 +147,10 @@ public class DeleteAnimal extends AppCompatActivity {
                         }
                         adapterToFindAnimalDelete adapterToFindAnimalDelete= new adapterToFindAnimalDelete(list);
                         recyclerView.setAdapter(adapterToFindAnimalDelete);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DeleteAnimal.this);
+                        linearLayoutManager.setReverseLayout(true);
+                        linearLayoutManager.setStackFromEnd(true);
+                        recyclerView.setLayoutManager(linearLayoutManager);
                     }
                 }
 
@@ -186,6 +189,10 @@ public class DeleteAnimal extends AppCompatActivity {
         }
         adapterToFindAnimalDelete adapterToFindAnimalDelete= new adapterToFindAnimalDelete(Mylist);
         recyclerView.setAdapter(adapterToFindAnimalDelete);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DeleteAnimal.this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
 
     }
