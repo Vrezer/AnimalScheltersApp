@@ -58,7 +58,7 @@ public class drawerMenuHelper {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.settings :
-                        intentActivity(activity, testing_find.class);
+                        intentActivity(activity, Settings.class);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.logOut :
