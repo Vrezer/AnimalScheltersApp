@@ -67,10 +67,6 @@ public class drawerMenuHelperAdmin {
                         intentActivity(activity, DisplayUser.class);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case R.id.adminUserMenu :
-                        intentActivity(activity, GetAccessAdmin.class);
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
                     case R.id.adoptFormMenu :
                         intentActivity(activity, AdoptAdmin.class);
                         drawerLayout.closeDrawer(GravityCompat.START);

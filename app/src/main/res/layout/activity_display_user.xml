@@ -14,7 +14,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundcolor"
+    android:background="@drawable/bg_user"
     >
 
     <ScrollView
@@ -31,20 +31,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/displayUserButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="200dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/buttonshape"
-                android:text="     Wyświetl     "
-                app:layout_constraintBottom_toBottomOf="parent"
+            <SearchView
+                android:id="@+id/searchViewDisplayUser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:queryHint="Wpisz Nazwisko"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recylewViewDisplayUser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/searchViewDisplayUser" />
 
             <TextView
                 android:id="@+id/textViewDisplaySexUser"
@@ -68,6 +71,7 @@
                 android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -93,6 +97,7 @@
                 android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -106,7 +111,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView22"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -119,8 +124,9 @@
                 android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -133,8 +139,24 @@
                 android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:singleLine="false"
+                android:text="Telefon : "
+                android:textColor="#454444"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
             <TextView
                 android:id="@+id/textViewDisplaySurnameUser"
@@ -148,58 +170,81 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
             <TextView
+                android:id="@+id/textViewDisplayPhoneUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+            <TextView
                 android:id="@+id/textViewDisplayNameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="25dp"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/idDispalyUser" />
+                app:layout_constraintTop_toBottomOf="@+id/recylewViewDisplayUser" />
 
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="25dp"
                 android:singleLine="false"
                 android:text="Imie : "
                 android:textColor="#454444"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/idDispalyUser" />
-
-            <EditText
-                android:id="@+id/idDispalyUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:ems="10"
-                android:hint="Podaj ID Użytkownika"
-                android:inputType="textShortMessage|textLongMessage|textPersonName"
-                android:singleLine="false"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColorHint="@android:color/holo_red_dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                app:layout_constraintTop_toBottomOf="@+id/recylewViewDisplayUser" />
 
             <TextView
-                android:id="@+id/textView19"
-                android:layout_width="0dp"
+                android:id="@+id/recycleUserNameUser2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="Wyświetlenie \nUżytkownika"
-                android:textAlignment="center"
-                android:textColor="#000000"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:text="Nadawanie Administratora"
+                android:textColor="#000"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+            <ImageView
+                android:id="@+id/recycleUserAdminTrue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/recycleUserNameUser2"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+            <ImageView
+                android:id="@+id/recycleUserAdminFalse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_toStartOf="@+id/recycleUserAdminTrue"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/recycleUserAdminTrue"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                app:srcCompat="@android:drawable/ic_delete" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
     <RelativeLayout
@@ -233,5 +278,6 @@
         android:layout_gravity="start"
         android:background="@drawable/bgnavigation"
         app:headerLayout="@layout/herder_navi"
-        app:menu="@menu/admin_menu" />
+        app:menu="@menu/admin_menu"
+        tools:visibility="gone" />
 </androidx.drawerlayout.widget.DrawerLayout>

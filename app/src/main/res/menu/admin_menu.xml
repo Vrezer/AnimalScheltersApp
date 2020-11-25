@@ -35,11 +35,8 @@
         <menu>
             <item
                 android:id="@+id/displayUserMenu"
-                android:title="Wyświetlanie Użytkownika"
+                android:title="Użytkownik"
                 />
-            <item
-                android:id="@+id/adminUserMenu"
-                android:title="Nadawanie Administratora" />
 
         </menu>
     </item>

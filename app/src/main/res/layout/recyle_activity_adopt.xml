@@ -7,74 +7,74 @@
     app:cardBackgroundColor="@android:color/transparent"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/recycleAdoptDate"
             android:layout_width="match_parent"
-            android:textAlignment="center"
             android:layout_height="wrap_content"
-            android:textColor="#000"
             android:layout_marginStart="40dp"
-            android:textSize="18sp"
-            android:text="DATA" />
+            android:text="DATA"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/recycleAdoptIdAdopt"
             android:layout_width="wrap_content"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:layout_marginStart="40dp"
             android:layout_below="@+id/recycleAdoptDate"
+            android:layout_marginStart="40dp"
+            android:text="TUTAJ BEDZIE ID ZGLOSZENIA"
+            android:textColor="#000"
             android:textSize="18sp"
-            android:text="TUTAJ BEDZIE ID ZGLOSZENIA" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/nameAdoptAdmin"
-            android:textColor="#000"
-            android:textSize="18sp"
-            android:layout_marginStart="40dp"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/recycleAdoptIdAdopt"
             android:layout_height="wrap_content"
-            android:text="Tutaj bedzie imie" />
+            android:layout_below="@+id/recycleAdoptIdAdopt"
+            android:layout_marginStart="40dp"
+            android:text="Tutaj bedzie imie"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/surnameAdoptAdmin"
-            android:textColor="#000"
-            android:textSize="18sp"
-            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
-            android:layout_below="@+id/recycleAdoptIdAdopt"
-            android:layout_toEndOf="@+id/nameAdoptAdmin"
             android:layout_height="wrap_content"
-            android:text="Tutaj bedzie nazwisko" />
+            android:layout_below="@+id/recycleAdoptIdAdopt"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/nameAdoptAdmin"
+            android:text="Tutaj bedzie nazwisko"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/TextView1000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#454444"
-            android:textSize="18sp"
             android:layout_below="@+id/nameAdoptAdmin"
             android:layout_marginStart="40dp"
             android:text="Zwierze wabi się: "
-            />
+            android:textColor="#454444"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/animalNameAdoptAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:textSize="18sp"
             android:layout_below="@+id/nameAdoptAdmin"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/TextView1000"
-            android:id="@+id/animalNameAdoptAdmin"
-            android:text="Imie "/>
-
+            android:text="Imie "
+            android:textColor="#000"
+            android:textSize="18sp" />
 
 
     </RelativeLayout>

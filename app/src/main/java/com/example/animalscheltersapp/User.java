@@ -6,6 +6,7 @@ public class User {
     private String Number;
     private String Sex;
    private boolean Admin = false;
+   private String idUser;
 
 
     public User()
@@ -13,7 +14,7 @@ public class User {
 
     }
 
-    public User(String email, String password, String name, String surname, String age, String number, String sex, boolean admin) {
+    public User(String email, String password, String name, String surname, String age, String number, String sex, boolean admin, String idUser) {
         Email = email;
         Password = password;
         Name = name;
@@ -22,6 +23,15 @@ public class User {
         Number = number;
         Sex = sex;
         Admin = admin;
+        this.idUser = idUser;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public void setAdmin(boolean admin) {

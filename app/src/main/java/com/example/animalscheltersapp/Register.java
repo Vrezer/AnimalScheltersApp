@@ -136,7 +136,7 @@ public class Register extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid()); //Path: User/UserUID/
-        User user = new User(email, password, name, surname, age, phone, sex_tmp, admin);
+        User user = new User(email, password, name, surname, age, phone, sex_tmp, admin,firebaseAuth.getUid());
         databaseReference.setValue(user);
     }
 

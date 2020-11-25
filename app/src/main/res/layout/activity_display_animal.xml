@@ -226,6 +226,5 @@
         android:layout_gravity="start"
         android:background="@drawable/bgnavigation"
         app:headerLayout="@layout/herder_navi"
-        app:menu="@menu/admin_menu"
-        tools:visibility="gone" />
+        app:menu="@menu/admin_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>
