@@ -64,10 +64,6 @@ public class GetDataFirebase {
         ref.addValueEventListener(getData);
     }
 
-    public static void Toast()
-    {
-
-    }
 
 
     // in future optimize

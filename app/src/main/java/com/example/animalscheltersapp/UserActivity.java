@@ -82,12 +82,13 @@ public class UserActivity extends AppCompatActivity {
     }
 
 
-    //FUNCTION TO RYCLEVIEW
+    //FUNCTION TO RECYLEVIEW
     @Override
     protected void onStart() {
         super.onStart();
         myAdapter.startListening();
     }
+
     @Override
     protected void onStop() {
         super.onStop();
