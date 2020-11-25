@@ -28,9 +28,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AnimalUser" />
         <activity
-            android:name=".GetAccessAdmin"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".DisplayUser"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

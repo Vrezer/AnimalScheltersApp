@@ -149,7 +149,7 @@ public class DisplayAnimal extends AppCompatActivity {
 
     private void search(String str)
     {
-        ArrayList<Animal> Mylist = new ArrayList<Animal>();
+        ArrayList<Animal> Mylist = new ArrayList<>();
         for ( Animal animal: list)
         {
             if (animal.getName().toLowerCase().contains(str.toLowerCase()))
@@ -163,8 +163,6 @@ public class DisplayAnimal extends AppCompatActivity {
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
-
-
     }
 
 
