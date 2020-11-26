@@ -1,6 +1,7 @@
 package com.example.animalscheltersapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,23 +35,14 @@ public class AdapterRecycleViewAdopt extends FirebaseRecyclerAdapter<AdoptModel,
         GetAnimal(holder,model);
         GetUser(holder,model);
         holder.date.setText(model.date);
-       /* holder.img.setOnClickListener(new View.OnClickListener() {
+        holder.idForm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                Intent intent=new Intent(context,AnimalUser.class );
-                intent.putExtra("img",model.getUrlPicture());
-                intent.putExtra("name",model.getName());
-                intent.putExtra("id",model.getId());
-                intent.putExtra("breed",model.getBreed());
-                intent.putExtra("age",model.getAge());
-                intent.putExtra("sex",model.getSex());
-                intent.putExtra("description",model.getDescription());
+            public void onClick(View v) {
+                Intent intent=new Intent(context,Admin_adoptForm_display.class );
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
-
             }
-        });*/
+        });
 
     }
 
