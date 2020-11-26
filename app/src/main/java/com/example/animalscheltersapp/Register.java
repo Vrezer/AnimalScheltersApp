@@ -157,10 +157,7 @@ public class Register extends AppCompatActivity {
         Age();
         Phone();
         Sex();
-        if(ValidateEmail()&&ValidatePassword()&&ValidateName()&&ValidateSurname() && ValidateAge()&&ValidateNumber()&&ValidateSex())
-            return true;
-        else
-            return false;
+        return ValidateEmail() && ValidatePassword() && ValidateName() && ValidateSurname() && ValidateAge() && ValidateNumber() && ValidateSex();
     }
 
     private boolean ValidateEmail()
@@ -306,7 +303,6 @@ public class Register extends AppCompatActivity {
     }
 
     // CHECK Sex //
-
     private String CheckSex()
     {
         if (man.isChecked())
@@ -324,7 +320,6 @@ public class Register extends AppCompatActivity {
     {
         makeToast("Błąd w rejestracji! ");
     }
-
 
     private void makeToast(String message)
     {

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".UserSettingsChangePassword"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Admin_adoptForm_display"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

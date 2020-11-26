@@ -29,7 +29,7 @@ public class AdapterRecycleViewAdopt extends FirebaseRecyclerAdapter<AdoptModel,
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull AdapterRecycleViewAdopt.myView holder, int position, @NonNull AdoptModel model) {
+    protected void onBindViewHolder(@NonNull AdapterRecycleViewAdopt.myView holder, int position, @NonNull final AdoptModel model) {
 
         holder.idForm.setText(model.idAdoptForm);
         GetAnimal(holder,model);
@@ -39,6 +39,9 @@ public class AdapterRecycleViewAdopt extends FirebaseRecyclerAdapter<AdoptModel,
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(context,Admin_adoptForm_display.class );
+                intent.putExtra("idAnimal",model.getIdAnimal());
+                intent.putExtra("idUser",model.getIdUser());
+                intent.putExtra("idAdopt",model.getIdAdoptForm());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

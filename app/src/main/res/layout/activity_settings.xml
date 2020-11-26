@@ -29,6 +29,49 @@
                 android:layout_height="wrap_content">
 
 
+                <Button
+                    android:id="@+id/settingsButtonDelete"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="100dp"
+                    android:background="@drawable/buttonshape"
+                    android:text="   Usuń konto   "
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settingsButtonChangePassword"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/settingsButtonUpdateProfile"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/buttonshape"
+                    android:text="   Edytuj Profil   "
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/settingsButtonChangePassword"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/buttonshape"
+                    android:text="    Zmień Hasło    "
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settingsButtonUpdateProfile" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
@@ -66,5 +109,6 @@
         android:background="@drawable/bgnavigation"
         android:visibility="visible"
         app:headerLayout="@layout/herder_navi"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"
+        tools:visibility="gone" />
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -31,7 +31,20 @@
                 android:layout_height="wrap_content">
 
 
-
+                <Button
+                    android:id="@+id/AdoptDisplayRemoveButton"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/buttonshape"
+                    android:text="   Usuń Zgłoszenie   "
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewAdoptDisplayQuestion18" />
 
                 <TextView
                     android:id="@+id/textViewAdoptDisplayPhoneUser"
