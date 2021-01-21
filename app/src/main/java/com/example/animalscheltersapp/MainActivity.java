@@ -55,17 +55,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Validate())
-                {
-
-                    firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                { firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             CheckEmailVerification();
-                            else
-                            {
-                                makeToast("Blędny e-mail lub hasło.");
-                            }
+                            else { makeToast("Blędny e-mail lub hasło."); }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -110,16 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 assert user != null;
                 tmp_admin = user.isAdmin();
                 if (!tmp_admin)
-                {
-                    makeToast("Logowanie...");
-                    startActivity(new Intent(MainActivity.this, UserActivity.class));
-            }
-                else
-                    {
-                    makeToast("Logowanie Admin...");
-                    startActivity(new Intent(MainActivity.this, AdminActivity.class));
-                }
-            }
+                { makeToast("Logowanie...");
+                    startActivity(new Intent(MainActivity.this, UserActivity.class)); }
+                else { makeToast("Logowanie Admin...");
+                    startActivity(new Intent(MainActivity.this, AdminActivity.class)); } }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }

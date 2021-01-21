@@ -120,7 +120,7 @@
                 android:textColor="#0728FA"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/TermsSwitchRgister"
-                app:layout_constraintTop_toBottomOf="@+id/SexGroupRegisterButton" />
+                app:layout_constraintTop_toBottomOf="@+id/SettingsEditProfileSexGroup" />
 
             <EditText
                 android:id="@+id/AgeRegisterText"
@@ -141,7 +141,7 @@
                 android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/SexGroupRegisterButton" />
+                app:layout_constraintTop_toBottomOf="@+id/SettingsEditProfileSexGroup" />
 
             <EditText
                 android:id="@+id/PhoneRegisterText"
@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/AgeRegisterText" />
 
             <RadioGroup
-                android:id="@+id/SexGroupRegisterButton"
+                android:id="@+id/SettingsEditProfileSexGroup"
                 android:layout_width="211dp"
                 android:layout_height="73dp"
                 android:layout_marginTop="15dp"
@@ -165,13 +165,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/PhoneRegisterText">
 
                 <RadioButton
-                    android:id="@+id/MaleRegisterButton"
+                    android:id="@+id/SettingsEditProfileMaleSex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Mężczyzna" />
 
                 <RadioButton
-                    android:id="@+id/WomanRegisterButton"
+                    android:id="@+id/SettingsEditProfileWomanSex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kobieta" />

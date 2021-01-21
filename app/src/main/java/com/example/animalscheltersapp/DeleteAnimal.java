@@ -187,6 +187,7 @@ public class DeleteAnimal extends AppCompatActivity {
                 Mylist.add(animal);
             }
         }
+
         adapterToFindAnimalDelete adapterToFindAnimalDelete= new adapterToFindAnimalDelete(Mylist);
         recyclerView.setAdapter(adapterToFindAnimalDelete);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DeleteAnimal.this);

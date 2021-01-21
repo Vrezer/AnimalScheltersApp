@@ -27,6 +27,8 @@ import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
 
+
+    //
     private FirebaseAuth firebaseAuth;
     final boolean admin = false;
     Button registerButton,termsButton;
@@ -57,8 +59,8 @@ public class Register extends AppCompatActivity {
         passwordEditText=findViewById(R.id.PasswordRegisterText);
         phoneEditText=findViewById(R.id.PhoneRegisterText);
         final Switch tmp=findViewById(R.id.TermsSwitchRgister);
-        man=findViewById(R.id.MaleRegisterButton);
-        woman=findViewById(R.id.WomanRegisterButton);
+        man=findViewById(R.id.SettingsEditProfileMaleSex);
+        woman=findViewById(R.id.SettingsEditProfileWomanSex);
         termsButton=findViewById(R.id.AcceptButtonTerms);
 
         registerButton.setEnabled(false);
@@ -102,23 +104,14 @@ public class Register extends AppCompatActivity {
         });
 
     }
-
-
-    private String Email()
-    { return email=emailEditText.getText().toString(); }
-    private String Password()
-    { return password=passwordEditText.getText().toString(); }
-    private String Name()
-    { return name=nameEditText.getText().toString(); }
-    private String Surname()
-    { return surname=surnameEditText.getText().toString(); }
-    private String Age()
-    { return age=ageEditText.getText().toString(); }
-    private String Phone()
-    { return phone=phoneEditText.getText().toString(); }
-    private String Sex()
-    { return sex_tmp=CheckSex(); }
-
+    // Get value
+    private String Email() { return email=emailEditText.getText().toString(); }
+    private String Password() { return password=passwordEditText.getText().toString(); }
+    private String Name() { return name=nameEditText.getText().toString(); }
+    private String Surname() { return surname=surnameEditText.getText().toString(); }
+    private String Age() { return age=ageEditText.getText().toString(); }
+    private String Phone() { return phone=phoneEditText.getText().toString(); }
+    private String Sex() { return sex_tmp=CheckSex(); }
     //function
     private void sendActivateEmail()
     {
@@ -130,23 +123,20 @@ public class Register extends AppCompatActivity {
                 public void onComplete(@NonNull Task<Void> task) { }});
         }
     }
-
     private void userData()
     {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid()); //Path: User/UserUID/
+        //Path: User/UserUID/
+        DatabaseReference databaseReference = firebaseDatabase.getReference("User").child(firebaseAuth.getUid());
         User user = new User(email, password, name, surname, age, phone, sex_tmp, admin,firebaseAuth.getUid());
         databaseReference.setValue(user);
     }
-
     public void goTerms(View view)
     {
         startActivity(new Intent(Register.this, Terms.class));
         makeToast("Warunki korzystania z użytkowania. ");
     }
-
-
     // VALIDATE //
     private boolean ValidateFinally()
     {
@@ -159,7 +149,6 @@ public class Register extends AppCompatActivity {
         Sex();
         return ValidateEmail() && ValidatePassword() && ValidateName() && ValidateSurname() && ValidateAge() && ValidateNumber() && ValidateSex();
     }
-
     private boolean ValidateEmail()
     {
         if(!email.isEmpty())
@@ -182,7 +171,6 @@ public class Register extends AppCompatActivity {
         }
 
     }
-
     private boolean ValidatePassword()
     {
         if(!password.isEmpty())
@@ -204,7 +192,6 @@ public class Register extends AppCompatActivity {
             return false;
         }
     }
-
     private boolean ValidateName()
     {
         if(!name.isEmpty()) {
@@ -226,7 +213,6 @@ public class Register extends AppCompatActivity {
             return false;
         }
     }
-
     private boolean ValidateSurname()
     {
         if(!surname.isEmpty()) {
@@ -248,7 +234,6 @@ public class Register extends AppCompatActivity {
             return false;
         }
     }
-
     private boolean ValidateAge()
     {
         int age_tmp;
@@ -268,7 +253,6 @@ public class Register extends AppCompatActivity {
             return false;
         }
     }
-
     private boolean ValidateNumber()
     {
         phoneEditText.setTextColor(Color.BLACK);
@@ -287,7 +271,6 @@ public class Register extends AppCompatActivity {
             return false;
         }
     }
-
     private boolean ValidateSex()
     {
         man.setTextColor(Color.BLACK);
@@ -301,28 +284,13 @@ public class Register extends AppCompatActivity {
             return false;
         }
     }
-
     // CHECK Sex //
     private String CheckSex()
-    {
-        if (man.isChecked())
+    { if (man.isChecked())
             return "M";
-        else
-            return "K";
-    }
-
+        else return "K"; }
     // Error and InfoButton
-    public void PasswordInfo(View view)
-    {
-        makeToast("Minimum 8 znaków,\nMinimum 1 wielka litera,\nMinimum 1 mała litera,\nMinimum 1 cyfra");
-    }
-    private void ErrorRegister()
-    {
-        makeToast("Błąd w rejestracji! ");
-    }
-
-    private void makeToast(String message)
-    {
-        Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show();
-    }
+    public void PasswordInfo(View view) { makeToast("Minimum 8 znaków,\nMinimum 1 wielka litera,\nMinimum 1 mała litera,\nMinimum 1 cyfra"); }
+    private void ErrorRegister() { makeToast("Błąd w rejestracji! "); }
+    private void makeToast(String message) { Toast.makeText(Register.this, message, Toast.LENGTH_SHORT).show(); }
 }

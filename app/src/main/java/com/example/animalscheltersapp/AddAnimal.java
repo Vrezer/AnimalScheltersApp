@@ -154,14 +154,12 @@ public class AddAnimal extends AppCompatActivity {
         final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference ref=firebaseDatabase.getReference("Animal") ;
         final DatabaseReference newPost=ref.push();
-
         AnimalId=newPost.getKey();
         final StorageReference imageReference = storageReference.child("Animal").child(AnimalId); // Path: // Animal
         final UploadTask uploadTask = imageReference.putFile(imagePath);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-            }
+            public void onFailure(@NonNull Exception e) { }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -176,9 +174,7 @@ public class AddAnimal extends AppCompatActivity {
                         Animal animal = new Animal(name, age, breed, CheckSex(), description,profileImageUrl,id,tmp);
                         newPost.setValue(animal);
                     }
-                });
-            }
-        });
+                }); }});
 
     }
 

@@ -62,7 +62,12 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-
+        updateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditProfile();
+            }
+        });
     }
 
     private void DrawerMenu()
@@ -106,5 +111,7 @@ public class Settings extends AppCompatActivity {
     }
 
     private void ChangePassword() { startActivity(new Intent(Settings.this,UserSettingsChangePassword.class));}
+
+    private void EditProfile() { startActivity(new Intent(Settings.this,UserSettingsEditProfile.class));}
 
 }
